@@ -1,0 +1,7 @@
+Estrutura v16:
+/index.html — app principal e módulos
+/manifest.webmanifest — PWA
+/sw.js — cache offline
+/firebase.rules — segurança Firestore
+/assets/v16-notes.md — notas da versão
+/assets/estrutura.txt — organização do pacote
