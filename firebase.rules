@@ -1,0 +1,37 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+    function familyDoc(familyId) {
+      return /databases/$(database)/documents/familias/$(familyId);
+    }
+    function isMember(familyId) {
+      return signedIn()
+        && exists(familyDoc(familyId))
+        && get(familyDoc(familyId)).data.members[request.auth.uid] == true;
+    }
+
+    match /familias/{familyId} {
+      allow create: if signedIn()
+        && request.resource.data.ownerUid == request.auth.uid
+        && request.resource.data.members[request.auth.uid] == true;
+
+      allow read, delete: if isMember(familyId);
+
+      // Permite que alguém entre no lar apenas se souber o PIN.
+      // Para produção avançada, recomenda-se implementar convites com Cloud Functions.
+      allow update: if isMember(familyId)
+        || (
+          signedIn()
+          && request.resource.data.joinPin == resource.data.joinPin
+          && request.resource.data.members[request.auth.uid] == true
+        );
+
+      match /items/{itemId} {
+        allow read, create, update, delete: if isMember(familyId);
+      }
+    }
+  }
+}
