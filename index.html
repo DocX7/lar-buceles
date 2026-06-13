@@ -1,0 +1,2503 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#06101f" />
+  <meta name="description" content="Lar Buceles Command Center: command center familiar inteligente v16 Master Free com mobile premium, ações rápidas, filtros avançados, relatórios profissionais, saúde do lar ponderada, onboarding, reunião semanal, apresentação, offline, privacidade, backup, lixeira, histórico, agenda e rotina espiritual." />
+  <title>Lar Buceles • Command Center v16 Master Free</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Lar Buceles" />
+  <meta name="format-detection" content="telephone=no" />
+  <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://accounts.google.com" crossorigin>
+  <style>
+    :root{
+      --bg:#050814;
+      --bg2:#081425;
+      --surface:rgba(10,20,38,.74);
+      --surface2:rgba(14,28,54,.88);
+      --line:rgba(129,221,255,.18);
+      --line2:rgba(255,255,255,.08);
+      --text:#f1f8ff;
+      --muted:rgba(224,239,255,.74);
+      --muted2:rgba(207,226,246,.52);
+      --cyan:#78efff;
+      --blue:#4da8ff;
+      --violet:#9c7bff;
+      --pink:#ff74d8;
+      --green:#7dffc8;
+      --amber:#ffe28a;
+      --red:#ff8093;
+      --shadow:0 28px 90px rgba(0,0,0,.48);
+      --r:28px;
+      --r2:18px;
+      --bottom:env(safe-area-inset-bottom,0px);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 18% 14%, rgba(120,239,255,.13), transparent 0 24%),
+        radial-gradient(circle at 84% 8%, rgba(156,123,255,.15), transparent 0 24%),
+        radial-gradient(circle at 54% 96%, rgba(255,116,216,.10), transparent 0 22%),
+        linear-gradient(135deg,#040713,#071225 48%,#050915);
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow-x:hidden;
+    }
+    body::before{
+      content:"";
+      position:fixed;
+      inset:-10%;
+      pointer-events:none;
+      opacity:.30;
+      background-image:
+        linear-gradient(rgba(120,239,255,.075) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120,239,255,.075) 1px, transparent 1px);
+      background-size:56px 56px;
+      mask-image:radial-gradient(circle at center,#000 0 50%,transparent 82%);
+      animation:gridMove 46s linear infinite;
+      z-index:0;
+    }
+    body::after{
+      content:"";
+      position:fixed;inset:0;pointer-events:none;z-index:0;
+      background:repeating-linear-gradient(180deg,rgba(255,255,255,.018) 0 2px,transparent 2px 7px);
+      opacity:.42;mix-blend-mode:screen;
+    }
+    @keyframes gridMove{to{transform:translate3d(-56px,-56px,0)}}
+    @keyframes reveal{from{opacity:0;transform:translateY(16px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+    @keyframes float{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-10px,0)}}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes shine{to{background-position:220% center}}
+    button,input,select,textarea{font:inherit}
+    button{cursor:pointer}
+    a{color:var(--cyan)}
+    .decor{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+    .orb{position:absolute;width:32vw;height:32vw;min-width:260px;min-height:260px;border-radius:50%;filter:blur(.2px);opacity:.50;animation:float 10s ease-in-out infinite}
+    .orb.one{right:-10vw;top:-10vw;background:radial-gradient(circle at 30% 30%, rgba(120,239,255,.25), rgba(77,168,255,.10) 42%, transparent 72%)}
+    .orb.two{left:-12vw;bottom:-12vw;background:radial-gradient(circle at 30% 30%, rgba(156,123,255,.24), rgba(255,116,216,.10) 42%, transparent 72%);animation-duration:12s}
+    .ring{position:absolute;border:1px solid rgba(120,239,255,.14);border-radius:50%;width:32vw;height:32vw;min-width:300px;min-height:300px;box-shadow:0 0 80px rgba(77,168,255,.08) inset;animation:spin 32s linear infinite}
+    .ring::before,.ring::after{content:"";position:absolute;inset:15%;border-radius:50%;border:1px dashed rgba(156,123,255,.16)}
+    .ring::after{inset:35%;border-color:rgba(255,116,216,.13)}
+    .ring.left{left:-12vw;top:12vh}.ring.right{right:-14vw;bottom:6vh;animation-direction:reverse;animation-duration:42s}
+    .app{position:relative;z-index:1;display:grid;grid-template-columns:292px 1fr;min-height:100vh}
+    .sidebar{
+      position:sticky;top:0;height:100vh;padding:24px 18px 22px 22px;display:flex;flex-direction:column;gap:18px;
+      background:linear-gradient(180deg,rgba(7,14,28,.82),rgba(7,14,28,.62));
+      border-right:1px solid var(--line);
+      backdrop-filter:blur(22px) saturate(140%);
+    }
+    .brand{display:flex;align-items:center;gap:13px;padding:13px 14px;border-radius:24px;background:rgba(255,255,255,.045);border:1px solid var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+    .logo{width:52px;height:52px;border-radius:18px;display:grid;place-items:center;position:relative;overflow:hidden;color:#04111f;font-weight:950;letter-spacing:-.08em;background:conic-gradient(from 220deg,var(--cyan),var(--blue),var(--violet),var(--pink),var(--cyan));box-shadow:0 0 28px rgba(120,239,255,.24);animation:float 5s ease-in-out infinite}
+    .logo::before{content:"";position:absolute;inset:2px;border-radius:16px;background:linear-gradient(135deg,rgba(255,255,255,.76),rgba(255,255,255,.12));mix-blend-mode:screen}
+    .brand h1{font-size:18px;line-height:1;margin:0;letter-spacing:-.06em}.brand span{display:block;color:var(--muted2);font-size:10px;text-transform:uppercase;letter-spacing:.14em;margin-top:6px}
+    .nav{display:grid;gap:7px;overflow:auto;padding-right:5px}.nav::-webkit-scrollbar{width:5px}.nav::-webkit-scrollbar-thumb{background:rgba(120,239,255,.20);border-radius:99px}
+    .nav-btn{width:100%;border:1px solid transparent;background:transparent;color:var(--muted);border-radius:18px;padding:11px 12px;display:flex;align-items:center;gap:10px;text-align:left;transition:.2s ease}
+    .nav-btn:hover{background:rgba(120,239,255,.07);color:var(--text);border-color:rgba(120,239,255,.13);transform:translateX(2px)}
+    .nav-btn.active{background:linear-gradient(135deg,rgba(120,239,255,.14),rgba(156,123,255,.12));border-color:rgba(120,239,255,.22);color:var(--text);box-shadow:0 14px 30px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.05)}
+    .nav-ico{width:26px;height:26px;display:grid;place-items:center;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.06)}
+    .nav-text small{display:block;color:var(--muted2);font-size:10px;margin-top:2px}
+    .side-card{margin-top:auto;padding:14px;border:1px solid var(--line);border-radius:22px;background:rgba(255,255,255,.045);color:var(--muted);font-size:12px;line-height:1.55}
+    .main{padding:26px 28px 112px;max-width:1540px;width:100%;margin:0 auto}
+    .mobile-top{display:none}.bottom-nav{display:none}
+    .topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:18px}
+    .headline h2{font-size:30px;letter-spacing:-.06em;margin:0 0 8px}.headline p{margin:0;color:var(--muted);line-height:1.45}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.045);color:#c8f7ff;font-size:10px;letter-spacing:.10em;text-transform:uppercase;margin-bottom:11px}
+    .toolbar{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap}
+    .search{min-width:260px;position:relative}.search input{padding-left:38px}.search::before{content:"⌕";position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted2);z-index:1}
+    .btn{border:0;border-radius:15px;padding:11px 14px;display:inline-flex;align-items:center;gap:8px;justify-content:center;font-weight:850;color:#06101d;background:linear-gradient(135deg,var(--cyan),var(--blue) 48%,var(--violet));box-shadow:0 14px 30px rgba(77,168,255,.19),inset 0 1px 0 rgba(255,255,255,.30);transition:.18s ease;position:relative;overflow:hidden}
+    .btn:hover{transform:translateY(-2px);filter:saturate(1.06)}
+    .btn.secondary,.btn.ghost,.btn.danger{background:rgba(255,255,255,.055);border:1px solid var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.05);color:var(--text)}
+    .btn.ghost{color:var(--muted)}.btn.danger{border-color:rgba(255,128,147,.24);color:#ffd2dc}.btn.small{padding:8px 10px;border-radius:12px;font-size:12px}.btn.full{width:100%}
+    .pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.045);color:var(--muted);padding:8px 11px;font-size:12px}
+    .pill.ok{color:var(--green);border-color:rgba(125,255,200,.28)}.pill.warn{color:var(--amber);border-color:rgba(255,226,138,.26)}.pill.danger{color:var(--red);border-color:rgba(255,128,147,.28)}.pill.info{color:var(--cyan)}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+    .card{
+      grid-column:span 4;padding:18px;border-radius:24px;background:linear-gradient(180deg,rgba(13,26,50,.78),rgba(8,17,34,.62));
+      border:1px solid var(--line);box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.045);backdrop-filter:blur(20px) saturate(135%);animation:reveal .35s ease both;position:relative;overflow:hidden
+    }
+    .card::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(140deg,rgba(120,239,255,.12),transparent 30%,rgba(255,116,216,.08));opacity:.8}
+    .card > *{position:relative}
+    .card.wide{grid-column:span 8}.card.full{grid-column:1/-1}.card.half{grid-column:span 6}
+    .hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);gap:14px;margin:0 0 14px}
+    .hero h1{font-size:clamp(34px,4.6vw,64px);line-height:.96;letter-spacing:-.08em;margin:0 0 14px;max-width:840px}
+    .shine{background:linear-gradient(90deg,#f5fbff,var(--cyan),#aeb7ff,var(--pink),#f5fbff);background-size:220% auto;background-clip:text;-webkit-background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:shine 8s linear infinite}
+    .hero p{font-size:16px;line-height:1.55;color:var(--muted);margin:0;max-width:760px}
+    .metric{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+    .metric h3{margin:0 0 8px;color:var(--muted);font-size:12px;font-weight:650}.metric strong{display:block;font-size:32px;line-height:1;letter-spacing:-.06em}.metric small{display:block;color:var(--muted2);margin-top:8px}
+    .metric .icon{width:44px;height:44px;border-radius:16px;display:grid;place-items:center;background:rgba(120,239,255,.08);border:1px solid var(--line);font-size:22px}
+    .section-title{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:24px 0 13px}
+    .section-title h2{font-size:28px;letter-spacing:-.055em;margin:0}.section-title p{margin:5px 0 0;color:var(--muted)}
+    .panel{display:none}.panel.active{display:block;animation:reveal .28s ease both}
+    .input,select,textarea{width:100%;border:1px solid var(--line);border-radius:15px;background:rgba(5,13,26,.78);color:var(--text);padding:12px 13px;outline:none;transition:.18s ease}
+    textarea{min-height:88px;resize:vertical}select option{color:#091426}.input:focus,select:focus,textarea:focus{border-color:rgba(120,239,255,.52);box-shadow:0 0 0 4px rgba(120,239,255,.10)}
+    .form-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:11px}.field{grid-column:span 4;display:flex;flex-direction:column;gap:7px}.field span,.field label{color:var(--muted);font-size:12px}.field.s2{grid-column:span 2}.field.s3{grid-column:span 3}.field.s4{grid-column:span 4}.field.s5{grid-column:span 5}.field.s6{grid-column:span 6}.field.s8{grid-column:span 8}.field.s12{grid-column:1/-1}
+    .switch{min-height:44px;display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px}.switch input{width:19px;height:19px;accent-color:#78efff}
+    .items{display:grid;gap:10px}.item{display:grid;grid-template-columns:1fr auto;gap:12px;padding:14px;border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.045);transition:.18s ease}.item:hover{transform:translateY(-2px);background:rgba(255,255,255,.065)}.item h4{margin:0 0 7px;font-size:16px;letter-spacing:-.02em}.item p{margin:0;color:var(--muted);line-height:1.42;font-size:13px}.item-meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.item-actions{display:flex;gap:7px;justify-content:flex-end;align-items:flex-start;flex-wrap:wrap}
+    .empty{border:1px dashed rgba(120,239,255,.18);background:rgba(255,255,255,.035);border-radius:20px;color:var(--muted);padding:22px;text-align:center}
+    .progress{height:10px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden;border:1px solid rgba(255,255,255,.07);margin-top:10px}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--blue),var(--violet));border-radius:999px;transition:.4s ease}.bar.warn{background:linear-gradient(90deg,var(--amber),#ffb45e)}.bar.danger{background:linear-gradient(90deg,var(--red),var(--pink))}
+    .alert{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);background:rgba(255,255,255,.045);border-radius:20px;padding:14px}.alert .dot{width:12px;height:12px;border-radius:999px;background:var(--cyan);margin-top:4px;box-shadow:0 0 18px var(--cyan)}.alert.warn .dot{background:var(--amber);box-shadow:0 0 18px var(--amber)}.alert.danger .dot{background:var(--red);box-shadow:0 0 18px var(--red)}.alert h4{margin:0 0 5px}.alert p{margin:0;color:var(--muted);font-size:13px;line-height:1.4}
+    .tabbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.tab{border:1px solid var(--line);background:rgba(255,255,255,.045);border-radius:999px;padding:8px 11px;color:var(--muted);font-size:12px}.tab.active{color:#06101d;background:linear-gradient(135deg,var(--cyan),var(--blue));font-weight:850}
+    .modal{position:fixed;inset:0;background:rgba(2,6,14,.66);backdrop-filter:blur(10px);z-index:50;display:none;align-items:center;justify-content:center;padding:18px}.modal.active{display:flex}.modal-card{width:min(980px,100%);max-height:88vh;overflow:auto;border:1px solid var(--line);border-radius:28px;background:linear-gradient(180deg,rgba(10,20,38,.96),rgba(8,16,32,.94));box-shadow:var(--shadow);padding:22px}
+    .modal-card h2{margin:0 0 6px;letter-spacing:-.05em}.modal-card p{color:var(--muted);line-height:1.5}.code{white-space:pre-wrap;font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;border:1px solid var(--line);background:rgba(255,255,255,.045);border-radius:18px;padding:14px;color:#d9f8ff}
+    .divider{height:1px;background:var(--line);margin:16px 0}.hide{display:none!important}.tiny{font-size:12px;color:var(--muted);line-height:1.48}.toast{position:fixed;z-index:80;right:18px;bottom:calc(18px + var(--bottom));max-width:420px;transform:translateY(140%);transition:.25s ease;padding:14px 16px;border:1px solid var(--line);border-radius:18px;background:rgba(7,15,30,.96);box-shadow:var(--shadow);color:var(--text)}.toast.show{transform:translateY(0)}
+    .chart-row{display:grid;gap:10px}.month-select{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    @media(max-width:1120px){
+      .app{grid-template-columns:1fr}.sidebar{display:none}.main{padding:14px 14px 108px}.mobile-top{display:flex;position:sticky;top:0;z-index:14;align-items:center;justify-content:space-between;gap:10px;margin:-14px -14px 14px;padding:12px 14px;background:rgba(6,13,26,.82);backdrop-filter:blur(20px);border-bottom:1px solid var(--line)}.mobile-top .brand{padding:8px 10px}.mobile-top .logo{width:40px;height:40px;border-radius:14px}.mobile-top h1{font-size:15px}.topbar{display:block}.toolbar{justify-content:flex-start;margin-top:12px}.search{min-width:100%;width:100%}.hero{grid-template-columns:1fr}.card,.card.wide,.card.half{grid-column:span 6}.bottom-nav{display:flex;position:fixed;left:10px;right:10px;bottom:calc(10px + var(--bottom));z-index:30;gap:6px;padding:7px;border:1px solid var(--line);border-radius:24px;background:rgba(5,12,24,.86);backdrop-filter:blur(22px);box-shadow:var(--shadow);overflow:auto}.bottom-nav .nav-btn{min-width:72px;display:grid;place-items:center;text-align:center;padding:8px 7px;border-radius:17px;font-size:10px}.bottom-nav .nav-ico{font-size:17px;width:26px;height:26px}.bottom-nav .nav-text small{display:none}.ring{display:none}
+    }
+    @media(max-width:720px){
+      .hero h1{font-size:38px}.grid{gap:11px}.card,.card.wide,.card.half{grid-column:1/-1}.form-grid{grid-template-columns:1fr}.field,.field.s2,.field.s3,.field.s4,.field.s5,.field.s6,.field.s8,.field.s12{grid-column:1/-1}.item{grid-template-columns:1fr}.item-actions{justify-content:flex-start}.section-title{display:block}.modal-card{padding:18px;border-radius:24px}.toolbar .btn{flex:1}.toolbar .btn.small{flex:0}
+    }
+
+
+
+    /* Upgrade v14 Free Premium: offline, templates, espiritualidade, privacidade e economia */
+    .health-orb{width:150px;height:150px;border-radius:50%;display:grid;place-items:center;margin:auto;background:conic-gradient(var(--green) var(--health, 0%), rgba(255,255,255,.08) 0);box-shadow:0 0 36px rgba(125,255,200,.16), inset 0 0 0 12px rgba(5,12,24,.85);position:relative}
+    .health-orb::after{content:"";position:absolute;inset:16px;border-radius:50%;background:linear-gradient(180deg,rgba(9,19,36,.96),rgba(7,14,28,.92));border:1px solid var(--line)}
+    .health-orb strong{position:relative;z-index:1;font-size:36px;letter-spacing:-.08em}.health-orb span{position:relative;z-index:1;font-size:12px;color:var(--muted);display:block;text-align:center}
+    .timeline-mini{display:grid;gap:9px;max-height:420px;overflow:auto;padding-right:4px}.timeline-mini::-webkit-scrollbar{width:5px}.timeline-mini::-webkit-scrollbar-thumb{background:rgba(120,239,255,.20);border-radius:99px}
+    .timeline-entry{display:grid;grid-template-columns:auto 1fr;gap:10px;padding:11px;border-radius:16px;background:rgba(255,255,255,.035);border:1px solid rgba(120,239,255,.12)}
+    .timeline-entry .mark{width:10px;height:10px;border-radius:50%;background:var(--cyan);margin-top:5px;box-shadow:0 0 18px rgba(120,239,255,.45)}
+    .timeline-entry h4{margin:0 0 4px;font-size:13px}.timeline-entry p{margin:0;color:var(--muted);font-size:12px;line-height:1.42}
+    .backup-drop{border:1px dashed rgba(120,239,255,.28);border-radius:20px;padding:16px;background:rgba(255,255,255,.03)}
+    .system-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.system-actions .btn{width:100%}
+    @media(max-width:640px){.system-actions{grid-template-columns:1fr}.health-orb{width:128px;height:128px}.health-orb strong{font-size:30px}}
+
+
+    /* =========================================================
+       RESPONSIVIDADE UNIVERSAL v14
+       Web, Android, iOS, tablets, iPad, desktop, telas largas
+       ========================================================= */
+    :root{
+      --safe-top:env(safe-area-inset-top,0px);
+      --safe-right:env(safe-area-inset-right,0px);
+      --safe-left:env(safe-area-inset-left,0px);
+      --vh:1vh;
+    }
+    html,body{width:100%;max-width:100%;min-height:calc(var(--vh) * 100);overscroll-behavior-y:none;-webkit-text-size-adjust:100%;text-size-adjust:100%;}
+    @supports (height:100dvh){html,body{min-height:100dvh}.app{min-height:100dvh}}
+    .app{min-height:calc(var(--vh) * 100)}
+    .main,.card,.item,.toolbar,.headline,.modal-card,.grid,.form-grid{min-width:0}
+    .headline h2,.section-title h2,.hero h1,.item h4,.card h3{overflow-wrap:anywhere}
+    .toolbar > *,.btn,.input,select,textarea{min-width:0}
+    input,select,textarea{font-size:16px} /* evita zoom automático no iPhone */
+    .modal{padding:calc(14px + var(--safe-top)) calc(14px + var(--safe-right)) calc(14px + var(--bottom)) calc(14px + var(--safe-left))}
+    .modal-card{width:min(980px, calc(100vw - 28px - var(--safe-left) - var(--safe-right)));max-height:calc((var(--vh) * 100) - 34px - var(--safe-top) - var(--bottom))}
+    @supports (height:100dvh){.modal-card{max-height:calc(100dvh - 34px - var(--safe-top) - var(--bottom))}}
+
+    /* Desktop grande / monitores wide */
+    @media (min-width:1540px){
+      .app{grid-template-columns:320px 1fr}.main{max-width:1680px;padding:34px 36px 120px}.grid{gap:18px}.card{padding:22px}.headline h2{font-size:34px}.hero h1{font-size:clamp(46px,4.6vw,78px)}
+    }
+
+    /* Notebook e desktop médio */
+    @media (min-width:1121px) and (max-width:1320px){
+      .app{grid-template-columns:260px 1fr}.sidebar{padding:18px 13px}.brand{padding:11px}.logo{width:46px;height:46px}.nav-btn{padding:10px}.nav-text small{display:none}.main{padding:22px 22px 110px}.search{min-width:210px}.toolbar{max-width:560px}.card{padding:16px}.metric strong{font-size:28px}
+    }
+
+    /* iPad/tablet paisagem e retrato grande */
+    @media (max-width:1120px){
+      .main{padding-left:max(14px,var(--safe-left));padding-right:max(14px,var(--safe-right));padding-bottom:calc(112px + var(--bottom))}
+      .mobile-top{top:0;padding-top:calc(12px + var(--safe-top));padding-left:max(14px,var(--safe-left));padding-right:max(14px,var(--safe-right))}
+      .toolbar{display:grid;grid-template-columns:1fr 1fr;gap:8px}.toolbar .search{grid-column:1/-1}.toolbar .btn{width:100%}
+      .bottom-nav{left:max(10px,var(--safe-left));right:max(10px,var(--safe-right));bottom:calc(10px + var(--bottom));scrollbar-width:none}.bottom-nav::-webkit-scrollbar{display:none}
+      .bottom-nav .nav-btn{flex:1 0 86px;min-width:86px}.bottom-nav .nav-text b{font-size:11px}.bottom-nav .nav-ico{margin:0 auto}
+    }
+
+    /* Tablets menores e celulares grandes */
+    @media (max-width:900px){
+      .grid{grid-template-columns:repeat(6,1fr)}
+      .card,.card.wide,.card.half{grid-column:1/-1}
+      .hero{grid-template-columns:1fr}.hero h1{font-size:clamp(36px,8vw,58px)}
+      .section-title{align-items:flex-start}.tabbar{overflow:auto;flex-wrap:nowrap;padding-bottom:3px;scrollbar-width:none}.tabbar::-webkit-scrollbar{display:none}.tab{white-space:nowrap}
+      .metric strong{font-size:30px}
+    }
+
+    /* Celulares */
+    @media (max-width:640px){
+      body::before{background-size:42px 42px;opacity:.20}.decor{opacity:.42}.orb{min-width:200px;min-height:200px}.ring{display:none!important}
+      .main{padding-top:12px;padding-left:max(12px,var(--safe-left));padding-right:max(12px,var(--safe-right));padding-bottom:calc(98px + var(--bottom))}
+      .mobile-top{margin:-12px max(-12px,calc(var(--safe-right)*-1)) 12px max(-12px,calc(var(--safe-left)*-1));padding-bottom:10px}.mobile-top .brand{max-width:calc(100vw - 92px)}.mobile-top .brand span{display:none}
+      .headline h2{font-size:26px}.headline p{font-size:13px}.eyebrow{font-size:9px;letter-spacing:.08em;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+      .toolbar{grid-template-columns:1fr 1fr}.toolbar .btn{padding:10px 8px;font-size:12px}.toolbar #exportBtn{display:none}
+      .grid{gap:10px}.card{padding:14px;border-radius:22px}.metric{gap:8px}.metric .icon{width:40px;height:40px;border-radius:14px}.metric strong{font-size:27px}.section-title h2{font-size:24px}.section-title p{font-size:13px}.item{padding:13px;border-radius:18px}
+      .form-grid{gap:9px}.input,select,textarea{padding:11px 12px;border-radius:14px}.btn{border-radius:14px}
+      .bottom-nav{gap:4px;padding:6px;border-radius:20px}.bottom-nav .nav-btn{flex:1 1 0;min-width:0;padding:7px 5px}.bottom-nav .nav-ico{width:25px;height:25px}.bottom-nav .nav-text b{font-size:9.5px;line-height:1.05}.bottom-nav .nav-text small{display:none}
+      .modal-card{padding:16px;border-radius:22px;width:calc(100vw - 24px - var(--safe-left) - var(--safe-right))}
+      .toast{left:12px;right:12px;bottom:calc(82px + var(--bottom));max-width:none}
+    }
+
+    /* iPhone SE, Android pequenos e telas muito estreitas */
+    @media (max-width:380px){
+      .headline h2{font-size:23px}.mobile-top .logo{width:36px;height:36px}.mobile-top h1{font-size:14px}.toolbar{grid-template-columns:1fr}.toolbar .btn{width:100%}.metric strong{font-size:24px}.card{padding:12px}.bottom-nav .nav-text{display:none}.bottom-nav .nav-btn{padding:7px 3px}.bottom-nav .nav-ico{font-size:18px;width:29px;height:29px}.main{padding-bottom:calc(88px + var(--bottom))}
+    }
+
+    /* Celular deitado: aproveita largura e reduz barras */
+    @media (orientation:landscape) and (max-height:520px){
+      .mobile-top{position:relative}.headline h2{font-size:22px}.headline p{display:none}.toolbar{grid-template-columns:1fr repeat(4,auto);align-items:center}.toolbar .search{grid-column:auto;min-width:240px}.toolbar .btn{width:auto;padding:8px 10px}.main{padding-bottom:calc(78px + var(--bottom))}.bottom-nav{padding:5px}.bottom-nav .nav-btn{min-width:64px;padding:5px}.bottom-nav .nav-text b{font-size:9px}.hero h1{font-size:30px}.card{padding:12px}.modal-card{max-height:calc((var(--vh) * 100) - 18px)}
+    }
+
+    /* Impressão/exportação visual */
+    @media print{body{background:#fff;color:#111}.decor,.sidebar,.mobile-top,.bottom-nav,.toolbar,.btn,.modal,.toast{display:none!important}.app{display:block}.main{padding:0;max-width:none}.panel{display:block!important}.card,.item{break-inside:avoid;border:1px solid #ddd;background:#fff;color:#111;box-shadow:none}.pill,.tiny,.item p,.headline p{color:#333}}
+
+    @media (hover:none){.btn:hover,.nav-btn:hover,.item:hover{transform:none}}
+
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+  
+
+    /* Upgrade v14 Free Premium */
+    .offline-badge{position:fixed;right:14px;top:14px;z-index:60;padding:9px 12px;border-radius:999px;background:rgba(255,226,138,.12);border:1px solid rgba(255,226,138,.28);color:var(--amber);font-size:12px;backdrop-filter:blur(14px);display:none}
+    body.offline .offline-badge{display:block}
+    body.privacy-on .privacy-blur{filter:blur(6px);user-select:none}
+    .template-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .template-card{text-align:left;min-height:156px;align-items:flex-start;justify-content:flex-start;display:flex;flex-direction:column;gap:8px}
+    .template-card strong{font-size:16px}.template-card span{font-weight:500;color:var(--muted);line-height:1.45}
+    .assistant-line{padding:14px;border-radius:20px;background:linear-gradient(135deg,rgba(120,239,255,.08),rgba(156,123,255,.08));border:1px solid rgba(120,239,255,.16);color:var(--muted);line-height:1.55}
+    .mobile-compact-only{display:none}
+    .install-help{display:grid;gap:8px}.install-help li{color:var(--muted);line-height:1.45}
+    @media(max-width:900px){.template-grid{grid-template-columns:1fr 1fr}.desktop-only-extra{display:none}.mobile-compact-only{display:block}}
+    @media(max-width:560px){.template-grid{grid-template-columns:1fr}.eyebrow{white-space:normal}.toolbar #notifyBtn{display:none}}
+
+  
+
+    /* =========================================================
+       v16 Free Final Polish: app mais limpo, humano e seguro
+       ========================================================= */
+    .v16-focus-grid{display:grid;grid-template-columns:1.1fr .9fr 1fr;gap:14px}
+    .focus-card{padding:18px;border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));border:1px solid rgba(120,239,255,.16);min-height:170px}
+    .focus-card h3{margin:0 0 10px;font-size:18px;letter-spacing:-.04em}.focus-card .items{max-height:390px;overflow:auto;padding-right:3px}
+    .onboarding-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .step-card{padding:16px;border-radius:22px;background:rgba(255,255,255,.04);border:1px solid var(--line);position:relative;overflow:hidden}
+    .step-card.done{border-color:rgba(125,255,200,.32);background:linear-gradient(135deg,rgba(125,255,200,.08),rgba(120,239,255,.035))}
+    .step-card b{display:block;margin-bottom:6px}.step-card p{color:var(--muted);font-size:12px;line-height:1.45;margin:0 0 12px}.step-num{width:28px;height:28px;border-radius:12px;display:grid;place-items:center;background:rgba(120,239,255,.10);border:1px solid rgba(120,239,255,.22);margin-bottom:10px;color:var(--cyan);font-weight:900}
+    .meeting-checklist{display:grid;gap:9px}.meeting-checklist label{display:flex;align-items:flex-start;gap:10px;padding:11px;border:1px solid rgba(120,239,255,.14);border-radius:16px;background:rgba(255,255,255,.035);color:var(--muted);line-height:1.35}.meeting-checklist input{margin-top:3px;accent-color:#78efff;width:18px;height:18px}
+    .presentation-board{min-height:70vh;display:grid;grid-template-columns:1.05fr .95fr;gap:16px}.presentation-hero{display:flex;flex-direction:column;justify-content:space-between;min-height:360px}.presentation-clock{font-size:clamp(44px,8vw,88px);font-weight:950;letter-spacing:-.08em;line-height:.9}.presentation-date{color:var(--muted);font-size:18px}.presentation-list{display:grid;gap:10px}.presentation-list .alert{padding:14px}
+    .report-polish{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.report-box{padding:14px;border:1px solid rgba(120,239,255,.14);border-radius:18px;background:rgba(255,255,255,.035)}.report-box strong{font-size:24px;letter-spacing:-.05em}.report-box span{display:block;color:var(--muted);font-size:12px;margin-top:4px}
+    .btn.soft{background:linear-gradient(180deg,rgba(120,239,255,.09),rgba(156,123,255,.06));color:var(--text);border:1px solid rgba(120,239,255,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+    .presentation-mode .sidebar,.presentation-mode .mobile-top,.presentation-mode .topbar,.presentation-mode .bottom-nav{display:none!important}.presentation-mode .app{display:block}.presentation-mode .main{max-width:none;padding:22px}.presentation-mode #panel-apresentacao{display:block!important}
+    @media(max-width:900px){.v16-focus-grid,.presentation-board{grid-template-columns:1fr}.onboarding-steps{grid-template-columns:1fr 1fr}.report-polish{grid-template-columns:1fr}.focus-card{min-height:unset}}
+    @media(max-width:560px){.onboarding-steps{grid-template-columns:1fr}.presentation-clock{font-size:46px}.focus-card{padding:14px}.v16-focus-grid{gap:10px}}
+
+  
+
+    /* =========================================================
+       v16 MASTER FREE — acabamento final gratuito
+       Mobile premium, filtros avançados, FAB, acessibilidade,
+       modo apresentação refinado, segurança contra erro e PDF.
+       ========================================================= */
+    :root{--tap:48px;--focus:0 0 0 4px rgba(120,239,255,.18)}
+    .btn,.nav-btn,.tab,.template-card,.quick-card{min-height:var(--tap)}
+    .btn:focus-visible,.nav-btn:focus-visible,.tab:focus-visible,.input:focus-visible,button:focus-visible{outline:none;box-shadow:var(--focus), 0 0 0 1px rgba(120,239,255,.35) inset}
+    .v16-fab{position:fixed;right:max(18px,var(--safe-right));bottom:calc(92px + var(--bottom));z-index:55;width:58px;height:58px;border-radius:22px;border:1px solid rgba(120,239,255,.32);display:grid;place-items:center;font-size:28px;color:#04111f;background:linear-gradient(135deg,var(--cyan),var(--blue),var(--violet));box-shadow:0 20px 50px rgba(77,168,255,.28),inset 0 1px 0 rgba(255,255,255,.35);transition:.2s ease}
+    .v16-fab:hover{transform:translateY(-3px) scale(1.03)}
+    .quick-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.quick-card{padding:14px;border-radius:20px;background:rgba(255,255,255,.045);border:1px solid var(--line);color:var(--text);text-align:left}.quick-card strong{display:block;font-size:15px}.quick-card span{display:block;margin-top:5px;color:var(--muted);font-size:12px;line-height:1.35}
+    .advanced-filter{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1fr auto;gap:8px;padding:10px;border:1px solid rgba(120,239,255,.12);border-radius:20px;background:rgba(255,255,255,.03);margin:10px 0 14px}.advanced-filter .input{height:44px}.advanced-filter .btn{height:44px;min-height:44px}
+    .v16-score-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.v16-score{padding:12px;border:1px solid rgba(120,239,255,.12);border-radius:18px;background:rgba(255,255,255,.035)}.v16-score b{font-size:20px;letter-spacing:-.04em}.v16-score span{display:block;color:var(--muted);font-size:11px;margin-top:4px}
+    .v16-action-plan{display:grid;gap:9px}.v16-action{display:flex;gap:10px;align-items:flex-start;padding:12px;border-radius:17px;background:rgba(255,255,255,.04);border:1px solid rgba(120,239,255,.12)}.v16-action .badge{width:28px;height:28px;border-radius:12px;display:grid;place-items:center;background:rgba(120,239,255,.12);border:1px solid rgba(120,239,255,.16)}
+    .print-cover{display:none}.sr-only{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+    .install-strip{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;border-radius:18px;border:1px solid rgba(125,255,200,.18);background:linear-gradient(135deg,rgba(125,255,200,.08),rgba(120,239,255,.04))}
+    .danger-zone{border-color:rgba(255,128,147,.24)!important;background:rgba(255,128,147,.04)!important}
+    .report-kpi-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.report-kpi{padding:14px;border:1px solid rgba(120,239,255,.13);border-radius:20px;background:rgba(255,255,255,.035)}.report-kpi strong{font-size:24px;letter-spacing:-.05em}.report-kpi span{display:block;color:var(--muted);font-size:12px;margin-top:4px}
+    .theme-clean body,.theme-clean .card,.theme-clean .modal-card,.theme-clean .sidebar,.theme-clean .bottom-nav{backdrop-filter:blur(14px)}
+    @media(max-width:900px){.advanced-filter{grid-template-columns:1fr 1fr}.advanced-filter .wide-filter,.advanced-filter .btn{grid-column:1/-1}.v16-score-grid,.report-kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.quick-grid{grid-template-columns:1fr 1fr}.v16-fab{bottom:calc(92px + var(--bottom));right:max(14px,var(--safe-right))}}
+    @media(max-width:520px){.quick-grid,.v16-score-grid,.report-kpi-grid{grid-template-columns:1fr}.advanced-filter{grid-template-columns:1fr}.v16-fab{width:54px;height:54px;border-radius:20px;bottom:calc(86px + var(--bottom))}.install-strip{display:block}.install-strip .btn{width:100%;margin-top:10px}}
+    @media print{body{background:#fff!important;color:#111!important}.decor,.sidebar,.mobile-top,.topbar,.bottom-nav,.v16-fab,.btn,.tabbar,.modal,.toast{display:none!important}.app{display:block!important}.main{padding:0!important;max-width:none!important}.panel{display:block!important;page-break-after:always}.panel:not(#panel-relatorios):not(#panel-hoje){display:none!important}.card{box-shadow:none!important;border:1px solid #ddd!important;background:#fff!important;color:#111!important}.print-cover{display:block;margin-bottom:24px}.print-cover h1{font-size:36px;margin:0}.print-cover p{color:#555}.pill,.tiny,.item p,.headline p{color:#333!important}}
+
+  </style>
+</head>
+<body>
+  <div id="offlineBadge" class="offline-badge">Modo offline ativo</div>
+  <div class="decor" aria-hidden="true"><div class="orb one"></div><div class="orb two"></div><div class="ring left"></div><div class="ring right"></div></div>
+
+  <div id="app" class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">LB</div>
+        <div><h1>Lar Buceles</h1><span>Command Center</span></div>
+      </div>
+      <nav id="desktopNav" class="nav"></nav>
+      <div class="side-card">
+        <b>Feito por Marcus Buceles e Ingrid Buceles</b><br>
+        Um centro de comando familiar para administrar o lar com clareza, paz e excelência.
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="mobile-top">
+        <div class="brand"><div class="logo">LB</div><div><h1>Lar Buceles</h1><span>Família no controle</span></div></div>
+        <button id="mobileFamilyBtn" class="btn secondary small">Lar</button>
+      </div>
+
+      <div class="topbar">
+        <div class="headline">
+          <div class="eyebrow">◉ Firebase • Google Agenda • Modo casal</div>
+          <h2 id="pageTitle">Hoje</h2>
+          <p id="pageSubtitle">O que a família Buceles precisa resolver agora.</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+            <span id="authStatus" class="pill warn">Conta: aguardando login</span>
+            <span id="familyStatus" class="pill warn">Lar: não conectado</span>
+            <span id="calendarStatus" class="pill warn">Agenda: não conectada</span>
+            <span id="syncStatus" class="pill info">Online</span>
+            <span id="privacyStatus" class="pill info">Privacidade: normal</span>
+          </div>
+        </div>
+        <div class="toolbar">
+          <div class="search"><input id="globalSearch" class="input" placeholder="Buscar em todo o lar..."></div>
+          <button id="loginBtn" class="btn">Entrar</button>
+          <button id="calendarBtn" class="btn secondary">Agenda</button>
+          <button id="notifyBtn" class="btn secondary">Notificar</button>
+          <button id="familyBtn" class="btn secondary">Lar</button>
+          <button id="exportBtn" class="btn ghost">Exportar</button>
+          <button id="logoutBtn" class="btn danger hide">Sair</button>
+        </div>
+      </div>
+
+      <section id="panels"></section>
+    </main>
+
+    <nav id="bottomNav" class="bottom-nav"></nav>
+  </div>
+
+  <div id="familyModal" class="modal">
+    <div class="modal-card">
+      <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start">
+        <div><h2>Lar familiar</h2><p>Crie ou entre no mesmo lar para que Marcus e Ingrid vejam os mesmos dados em tempo real.</p></div>
+        <button class="btn ghost small" data-close="familyModal">Fechar</button>
+      </div>
+      <div class="grid">
+        <div class="card wide">
+          <h3>Criar novo lar</h3>
+          <div class="form-grid">
+            <label class="field s6"><span>Nome do lar</span><input id="newFamilyName" class="input" value="Lar Buceles"></label>
+            <label class="field s3"><span>PIN</span><input id="newFamilyPin" class="input" maxlength="8" placeholder="123456"></label>
+            <div class="field s3"><span>&nbsp;</span><button id="createFamilyBtn" class="btn full">Criar lar</button></div>
+          </div>
+          <p class="tiny">O PIN serve para confirmar a entrada da outra conta autorizada.</p>
+        </div>
+        <div class="card">
+          <h3>Entrar em lar existente</h3>
+          <label class="field s12"><span>Código do lar</span><input id="joinFamilyId" class="input" placeholder="lar-buceles-abc123"></label>
+          <label class="field s12"><span>PIN</span><input id="joinFamilyPin" class="input" maxlength="8"></label>
+          <button id="joinFamilyBtn" class="btn full">Entrar</button>
+        </div>
+      </div>
+      <div id="currentFamilyBox" class="hide">
+        <div class="divider"></div>
+        <h3>Lar atual</h3>
+        <p id="currentFamilyCode" class="code"></p>
+      </div>
+    </div>
+  </div>
+
+  <div id="moreModal" class="modal">
+    <div class="modal-card">
+      <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start">
+        <div><h2>Mais áreas</h2><p>Acesse todos os módulos do Lar Buceles.</p></div>
+        <button class="btn ghost small" data-close="moreModal">Fechar</button>
+      </div>
+      <div id="moreNav" class="grid"></div>
+    </div>
+  </div>
+
+
+
+  <button id="quickFab" class="v16-fab" aria-label="Ações rápidas">+</button>
+
+  <div id="quickModal" class="modal">
+    <div class="modal-card">
+      <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start">
+        <div><h2>Ações rápidas</h2><p>Crie ou acesse rapidamente o que a família precisa resolver agora.</p></div>
+        <button class="btn ghost small" data-close="quickModal">Fechar</button>
+      </div>
+      <div class="quick-grid">
+        <button class="quick-card" data-quick-module="contas"><strong>🧾 Nova conta</strong><span>Vencimento, valor e recorrência.</span></button>
+        <button class="quick-card" data-quick-module="compras"><strong>🛒 Compra</strong><span>Item de mercado ou farmácia.</span></button>
+        <button class="quick-card" data-quick-module="tarefas"><strong>✅ Tarefa</strong><span>Responsável, prazo e prioridade.</span></button>
+        <button class="quick-card" data-quick-module="agenda"><strong>📅 Evento</strong><span>Compromisso com Google Agenda.</span></button>
+        <button class="quick-card" data-quick-module="metas"><strong>🚀 Projeto</strong><span>Meta financeira ou familiar.</span></button>
+        <button class="quick-card" data-quick-module="espiritual"><strong>🕊️ Espiritual</strong><span>Devocional, oração ou gratidão.</span></button>
+        <button class="quick-card" data-quick-module="reuniao"><strong>🤝 Reunião</strong><span>Alinhar a semana da família.</span></button>
+        <button class="quick-card" data-quick-module="templates"><strong>⚡ Templates</strong><span>Criar uma base do lar.</span></button>
+        <button class="quick-card" data-quick-module="apresentacao"><strong>🖥️ Apresentação</strong><span>Painel para TV/tablet.</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+
+  <script>
+    (function(){
+      function setViewportVars(){
+        document.documentElement.style.setProperty('--vh', (window.innerHeight * 0.01) + 'px');
+      }
+      setViewportVars();
+      window.addEventListener('resize', setViewportVars, {passive:true});
+      window.addEventListener('orientationchange', function(){ setTimeout(setViewportVars, 250); }, {passive:true});
+    })();
+  </script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://apis.google.com/js/api.js" async defer></script>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getFirestore, doc, getDoc, setDoc, addDoc, updateDoc, deleteDoc, collection, query, orderBy, onSnapshot, serverTimestamp, enableMultiTabIndexedDbPersistence, limit } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const CONFIG = {
+      firebaseConfig: {
+        apiKey: "AIzaSyBHBet6MvrdTi-GqIPJmgArXx1MiaK-v78",
+        authDomain: "lar-buceles-584a8.firebaseapp.com",
+        projectId: "lar-buceles-584a8",
+        storageBucket: "lar-buceles-584a8.firebasestorage.app",
+        messagingSenderId: "795189282953",
+        appId: "1:795189282953:web:f0fad7b879c18e3ec21e58"
+      },
+      googleClientId: "32093458752-lslch0chh8ph14u53sulqvnr4eg9u33v.apps.googleusercontent.com",
+      googleApiKey: "AIzaSyDWrA41j0Pw7TBlB5RgVw8JNAKYWsuKSdM"
+    };
+
+    const ALLOWED_EMAILS = [
+      "contato.marcusbuceles@gmail.com",
+      "contato.ingridbuceles@gmail.com"
+    ];
+
+    const FAMILY_KEY = "larBuceles.family.v2";
+    const DISCOVERY_DOC = "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest";
+    const CALENDAR_SCOPE = "https://www.googleapis.com/auth/calendar.events";
+    const $ = (id) => document.getElementById(id);
+    const brl = new Intl.NumberFormat("pt-BR", {style:"currency", currency:"BRL"});
+    const monthFmt = new Intl.DateTimeFormat("pt-BR", {month:"long", year:"numeric"});
+    const dateFmt = new Intl.DateTimeFormat("pt-BR", {day:"2-digit", month:"2-digit", year:"numeric"});
+    const dateTimeFmt = new Intl.DateTimeFormat("pt-BR", {day:"2-digit", month:"2-digit", hour:"2-digit", minute:"2-digit"});
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "America/Sao_Paulo";
+
+    const modules = [
+      {id:"hoje", icon:"◉", label:"Hoje", desc:"Prioridades e alertas do dia"},
+      {id:"financas", icon:"💰", label:"Finanças", desc:"Entradas, saídas e categorias"},
+      {id:"contas", icon:"🧾", label:"Contas", desc:"Vencimentos e pagamentos"},
+      {id:"orcamentos", icon:"📊", label:"Orçamentos", desc:"Limites por categoria"},
+      {id:"casa", icon:"🏠", label:"Casa", desc:"Visão geral de rotina, estoque e compras"},
+      {id:"compras", icon:"🛒", label:"Compras", desc:"Lista inteligente de mercado"},
+      {id:"estoque", icon:"📦", label:"Estoque", desc:"Níveis mínimos do lar"},
+      {id:"tarefas", icon:"✅", label:"Tarefas", desc:"Rotina e responsabilidades"},
+      {id:"agenda", icon:"📅", label:"Agenda", desc:"Compromissos e Google Calendar"},
+      {id:"metas", icon:"🚀", label:"Projetos", desc:"Metas e sonhos da família"},
+      {id:"casal", icon:"💞", label:"Modo casal", desc:"Decisões, acordos e conversas"},
+      {id:"reuniao", icon:"🤝", label:"Reunião", desc:"Checklist semanal e resumo familiar"},
+      {id:"espiritual", icon:"🕊️", label:"Espiritual", desc:"Devocional, oração e gratidão"},
+      {id:"manutencao", icon:"🛠️", label:"Manutenção", desc:"Casa, carro e garantias"},
+      {id:"documentos", icon:"📁", label:"Documentos", desc:"Onde tudo está guardado"},
+      {id:"relatorios", icon:"📈", label:"Relatórios", desc:"Fechamento mensal e evolução"},
+      {id:"apresentacao", icon:"🖥️", label:"Apresentação", desc:"Painel para TV ou computador"},
+      {id:"onboarding", icon:"🧭", label:"Começar", desc:"Guia inicial do Lar Buceles"},
+      {id:"templates", icon:"⚡", label:"Templates", desc:"Criar rotinas prontas em segundos"},
+      {id:"sistema", icon:"🧠", label:"Sistema", desc:"Saúde do lar, backup, histórico e lixeira"},
+      {id:"emergencia", icon:"🚨", label:"Emergência", desc:"Contatos e informações críticas"}
+    ];
+
+    const schemas = {
+      financas: [
+        {name:"title", label:"Descrição", type:"text", span:5, required:true, placeholder:"Ex.: Salário, mercado, escola"},
+        {name:"kind", label:"Tipo", type:"select", span:3, options:[["entrada","Entrada"],["saida","Saída"]]},
+        {name:"amount", label:"Valor", type:"number", span:2, step:"0.01", required:true},
+        {name:"date", label:"Data", type:"date", span:2},
+        {name:"category", label:"Categoria", type:"select", span:4, options:["Renda","Moradia","Mercado","Educação","Saúde","Transporte","Lazer","Reserva","Investimento","Dívidas","Casa","Outros"]},
+        {name:"payment", label:"Forma", type:"select", span:3, options:["Pix","Débito","Crédito","Dinheiro","Boleto","Transferência","Outro"]},
+        {name:"notes", label:"Observações", type:"textarea", span:12}
+      ],
+      contas: [
+        {name:"title", label:"Conta", type:"text", span:5, required:true, placeholder:"Energia, água, internet, escola"},
+        {name:"amount", label:"Valor previsto", type:"number", span:2, step:"0.01"},
+        {name:"dueDate", label:"Vencimento", type:"date", span:3},
+        {name:"reminderDays", label:"Avisar antes", type:"number", span:2, placeholder:"3"},
+        {name:"recurrence", label:"Recorrência", type:"select", span:3, options:["Mensal","Única","Anual","Semanal"]},
+        {name:"paid", label:"Já foi pago?", type:"checkbox", span:3},
+        {name:"notes", label:"Observações", type:"textarea", span:12}
+      ],
+      orcamentos: [
+        {name:"category", label:"Categoria", type:"select", span:4, required:true, options:["Moradia","Mercado","Educação","Saúde","Transporte","Lazer","Reserva","Investimento","Dívidas","Casa","Outros"]},
+        {name:"month", label:"Mês de referência", type:"month", span:4},
+        {name:"limit", label:"Limite mensal", type:"number", span:4, step:"0.01", required:true},
+        {name:"notes", label:"Observações", type:"textarea", span:12}
+      ],
+      compras: [
+        {name:"title", label:"Item", type:"text", span:4, required:true, placeholder:"Arroz, leite, sabão"},
+        {name:"quantity", label:"Quantidade", type:"text", span:3, placeholder:"2 pacotes"},
+        {name:"category", label:"Categoria", type:"select", span:3, options:["Mercado","Higiene","Limpeza","Farmácia","Casa","Outros"]},
+        {name:"priority", label:"Prioridade", type:"select", span:2, options:["Normal","Alta","Baixa"]},
+        {name:"done", label:"Comprado?", type:"checkbox", span:3},
+        {name:"notes", label:"Observações", type:"textarea", span:12}
+      ],
+      estoque: [
+        {name:"title", label:"Produto", type:"text", span:4, required:true, placeholder:"Papel higiênico"},
+        {name:"current", label:"Qtd. atual", type:"number", span:2},
+        {name:"minimum", label:"Mínimo", type:"number", span:2},
+        {name:"unit", label:"Unidade", type:"text", span:2, placeholder:"un, kg, pct"},
+        {name:"location", label:"Onde fica", type:"text", span:2, placeholder:"Despensa"},
+        {name:"notes", label:"Observações", type:"textarea", span:12}
+      ],
+      tarefas: [
+        {name:"title", label:"Tarefa", type:"text", span:5, required:true, placeholder:"Limpar banheiro, organizar documentos"},
+        {name:"owner", label:"Responsável", type:"select", span:3, options:["Marcus","Ingrid","Casal","Família","Outro"]},
+        {name:"dueDate", label:"Prazo", type:"date", span:2},
+        {name:"priority", label:"Prioridade", type:"select", span:2, options:["Normal","Alta","Baixa"]},
+        {name:"frequency", label:"Frequência", type:"select", span:3, options:["Diária","Semanal","Mensal","Única"]},
+        {name:"done", label:"Concluída?", type:"checkbox", span:3},
+        {name:"notes", label:"Observações", type:"textarea", span:12}
+      ],
+      agenda: [
+        {name:"title", label:"Compromisso", type:"text", span:4, required:true, placeholder:"Consulta, reunião, igreja, escola"},
+        {name:"start", label:"Início", type:"datetime-local", span:3, required:true},
+        {name:"end", label:"Fim", type:"datetime-local", span:3},
+        {name:"recurrence", label:"Repetição", type:"select", span:2, options:["Nenhuma","Diária","Semanal","Mensal","Anual"]},
+        {name:"location", label:"Local", type:"text", span:5},
+        {name:"calendarSync", label:"Sincronizar no Google Agenda", type:"checkbox", span:4},
+        {name:"notes", label:"Descrição", type:"textarea", span:12}
+      ],
+      metas: [
+        {name:"title", label:"Projeto/meta", type:"text", span:5, required:true, placeholder:"Reserva, viagem, reforma, quitar dívida"},
+        {name:"category", label:"Categoria", type:"select", span:3, options:["Financeira","Família","Casa","Espiritual","Saúde","Estudos","Viagem","Outro"]},
+        {name:"targetAmount", label:"Valor alvo", type:"number", span:2, step:"0.01"},
+        {name:"currentAmount", label:"Valor atual", type:"number", span:2, step:"0.01"},
+        {name:"dueDate", label:"Data alvo", type:"date", span:3},
+        {name:"status", label:"Status", type:"select", span:3, options:["Em andamento","Pausado","Concluído","Planejado"]},
+        {name:"notes", label:"Plano de ação", type:"textarea", span:12}
+      ],
+      casal: [
+        {name:"title", label:"Assunto", type:"text", span:5, required:true, placeholder:"Decisão, sonho, conversa pendente"},
+        {name:"category", label:"Tipo", type:"select", span:3, options:["Decisão","Sonho","Conversa pendente","Acordo do lar","Responsabilidade","Gratidão"]},
+        {name:"owner", label:"Responsável", type:"select", span:2, options:["Marcus","Ingrid","Casal"]},
+        {name:"dueDate", label:"Prazo", type:"date", span:2},
+        {name:"status", label:"Status", type:"select", span:3, options:["Aberto","Em conversa","Resolvido","Acompanhando"]},
+        {name:"notes", label:"Detalhes", type:"textarea", span:12}
+      ],
+
+      espiritual: [
+        {name:"title", label:"Registro espiritual", type:"text", span:5, required:true, placeholder:"Devocional, oração, gratidão, leitura"},
+        {name:"category", label:"Tipo", type:"select", span:3, options:["Devocional","Oração","Gratidão","Leitura bíblica","Culto","Jejum","Meta espiritual"]},
+        {name:"date", label:"Data", type:"date", span:2},
+        {name:"owner", label:"Responsável", type:"select", span:2, options:["Marcus","Ingrid","Casal","Família"]},
+        {name:"done", label:"Concluído?", type:"checkbox", span:3},
+        {name:"verse", label:"Versículo/reflexão curta", type:"text", span:9, placeholder:"Ex.: Salmo 127:1"},
+        {name:"notes", label:"Anotações, pedidos de oração ou gratidão", type:"textarea", span:12}
+      ],
+      manutencao: [
+        {name:"title", label:"Manutenção", type:"text", span:4, required:true, placeholder:"Ar-condicionado, carro, caixa d'água"},
+        {name:"area", label:"Área", type:"select", span:3, options:["Casa","Carro","Eletrodoméstico","Segurança","Outros"]},
+        {name:"dueDate", label:"Próxima data", type:"date", span:3},
+        {name:"frequency", label:"Recorrência", type:"select", span:3, options:["Única","Mensal","Trimestral","Semestral","Anual"]},
+        {name:"amount", label:"Custo previsto", type:"number", span:2, step:"0.01"},
+        {name:"provider", label:"Fornecedor/contato", type:"text", span:5},
+        {name:"done", label:"Realizada?", type:"checkbox", span:3},
+        {name:"notes", label:"Detalhes", type:"textarea", span:12}
+      ],
+      documentos: [
+        {name:"title", label:"Documento", type:"text", span:5, required:true, placeholder:"Contrato, certidão, garantia"},
+        {name:"category", label:"Categoria", type:"select", span:3, options:["Pessoal","Imóvel","Carro","Saúde","Escola","Garantia","Impostos","Outros"]},
+        {name:"location", label:"Onde está", type:"text", span:4, placeholder:"Drive, pasta física, gaveta"},
+        {name:"expiryDate", label:"Validade", type:"date", span:3},
+        {name:"link", label:"Link digital", type:"url", span:9, placeholder:"https://..."},
+        {name:"notes", label:"Observações", type:"textarea", span:12}
+      ],
+      emergencia: [
+        {name:"title", label:"Título", type:"text", span:4, required:true, placeholder:"Médico, seguro, vizinho"},
+        {name:"name", label:"Nome/serviço", type:"text", span:4},
+        {name:"phone", label:"Telefone", type:"tel", span:4},
+        {name:"category", label:"Categoria", type:"select", span:3, options:["Saúde","Segurança","Família","Casa","Carro","Outros"]},
+        {name:"notes", label:"Informações críticas", type:"textarea", span:12}
+      ]
+    };
+
+    const state = {active:"hoje", search:"", items:[], allItems:[], trash:[], user:null, familyId:null, familyPin:null, familyDoc:null, unsub:null, notified:false, reportMonth: monthKey(new Date()), installPrompt:null, automating:false, recurrenceCheckedFor:"", online:navigator.onLine, offlineReady:false, privacyLocked: localStorage.getItem("larBuceles.privacyLocked")==="true", privacyPinSet: !!localStorage.getItem("larBuceles.privacyPin"), loadLimit: Number(localStorage.getItem("larBuceles.loadLimit")||500), lastDeleted:null, onboardingDone: localStorage.getItem("larBuceles.onboarding.v16")==="done"};
+    let app, auth, db, calendarReady=false, tokenClient=null, gapiReady=false;
+
+    init();
+
+    function init(){
+      app = initializeApp(CONFIG.firebaseConfig);
+      auth = getAuth(app);
+      db = getFirestore(app);
+      enableOfflinePersistence();
+      window.addEventListener("online", ()=>{ state.online=true; updateNetworkStatus(); toast("Conexão restaurada. O Firebase vai sincronizar automaticamente.", "ok"); });
+      window.addEventListener("offline", ()=>{ state.online=false; updateNetworkStatus(); toast("Você está offline. O app continuará usando o cache local.", "warn"); });
+      const saved = loadFamilyLocal();
+      if(saved){ state.familyId = saved.familyId; state.familyPin = saved.familyPin; }
+      window.addEventListener("beforeinstallprompt", (e)=>{ e.preventDefault(); state.installPrompt = e; renderSystem(); });
+      renderShell();
+      bind();
+      onAuthStateChanged(auth, async (u) => {
+        state.user = u;
+        if(u && !isAllowed(u.email)){
+          toast("Este app está restrito às contas de Marcus e Ingrid.", "danger");
+          await signOut(auth);
+          return;
+        }
+        if(u && state.familyId) await loadFamily();
+        renderAll();
+      });
+      setActive(localStorage.getItem("larBuceles.onboarding.v16")==="done" ? "hoje" : "onboarding");
+      if("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(()=>{});
+    }
+
+    function renderShell(){
+      const navHtml = modules.map(navButton).join("");
+      $("desktopNav").innerHTML = navHtml;
+      $("moreNav").innerHTML = modules.map(m => `<button class="card" data-module="${m.id}" style="text-align:left"><div class="metric"><div><h3>${m.label}</h3><p class="tiny">${m.desc}</p></div><div class="icon">${m.icon}</div></div></button>`).join("");
+      const mobile = [
+        modules.find(m=>m.id==="hoje"),
+        modules.find(m=>m.id==="financas"),
+        modules.find(m=>m.id==="casa"),
+        modules.find(m=>m.id==="agenda"),
+        {id:"mais", icon:"☰", label:"Mais", desc:"Todos"}
+      ];
+      $("bottomNav").innerHTML = mobile.map(navButton).join("");
+      $("panels").innerHTML = modules.map(panelHtml).join("");
+      setDefaultDates();
+    }
+
+    function navButton(m){
+      return `<button class="nav-btn" data-module="${m.id}">
+        <span class="nav-ico">${m.icon}</span>
+        <span class="nav-text"><b>${m.label}</b><small>${m.desc}</small></span>
+      </button>`;
+    }
+
+    function panelHtml(m){
+      if(m.id==="hoje") return `<section id="panel-hoje" class="panel">${todayHtml()}</section>`;
+      if(m.id==="casa") return `<section id="panel-casa" class="panel">${homeHubHtml()}</section>`;
+      if(m.id==="relatorios") return `<section id="panel-relatorios" class="panel">${reportsHtml()}</section>`;
+      if(m.id==="sistema") return `<section id="panel-sistema" class="panel">${systemHtml()}</section>`;
+      if(m.id==="templates") return `<section id="panel-templates" class="panel">${templatesHtml()}</section>`;
+      if(m.id==="onboarding") return `<section id="panel-onboarding" class="panel">${onboardingHtml()}</section>`;
+      if(m.id==="reuniao") return `<section id="panel-reuniao" class="panel">${meetingHtml()}</section>`;
+      if(m.id==="apresentacao") return `<section id="panel-apresentacao" class="panel">${presentationHtml()}</section>`;
+      const title = m.id==="metas" ? "Projetos da Família" : m.label;
+      return `<section id="panel-${m.id}" class="panel">
+        <div class="section-title">
+          <div><h2>${title}</h2><p>${m.desc}</p></div>
+          <div class="tabbar">
+            <button class="tab active" data-filter="${m.id}" data-value="todos">Todos</button>
+            <button class="tab" data-filter="${m.id}" data-value="pendentes">Pendentes</button>
+            <button class="tab" data-filter="${m.id}" data-value="concluidos">Concluídos</button>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="card wide"><h3>Novo registro</h3>${formHtml(m.id)}</div>
+          <div class="card"><h3>Inteligência do módulo</h3><div id="${m.id}Insight" class="tiny"></div></div>
+          <div class="card full"><h3>Registros salvos</h3><div id="${m.id}List" class="items"></div></div>
+        </div>
+      </section>`;
+    }
+
+    function todayHtml(){
+      return `<div class="hero">
+        <div class="card wide">
+          <div class="eyebrow">◉ Hoje • foco do lar</div>
+          <h1>O que precisa de atenção <span class="shine">agora.</span></h1>
+          <p>Uma visão limpa para decidir o dia: prioridades, agenda e financeiro do mês. O restante fica nos módulos específicos.</p>
+        </div>
+        <div class="card">
+          <h3>Saúde do Lar</h3>
+          <div class="health-orb" id="todayHealthOrb" style="--health:0%"><div><strong id="todayHealthScore">0%</strong><span>organização</span></div></div>
+        </div>
+      </div>
+      <div class="v16-focus-grid">
+        <div class="focus-card"><h3>Precisa de atenção</h3><div id="todayAlerts" class="items"></div></div>
+        <div class="focus-card"><h3>Agenda de hoje e próximos dias</h3><div id="weekTimeline" class="items"></div></div>
+        <div class="focus-card"><h3>Resumo financeiro do mês</h3><div class="report-polish">
+          <div class="report-box"><strong id="mSaldo">R$ 0</strong><span>saldo do mês</span></div>
+          <div class="report-box"><strong id="mPend">0</strong><span>pendências</span></div>
+          <div class="report-box"><strong id="mNext">—</strong><span>próximo evento</span></div>
+        </div><div class="divider"></div><div id="localAssistant" class="assistant-line">Analisando rotina familiar...</div></div>
+      </div>
+      <div class="grid" style="margin-top:14px">
+        <div class="card full"><h3>Ações rápidas</h3><div class="toolbar" style="justify-content:flex-start;margin-top:0">
+          <button class="btn" data-module="onboarding">Guia inicial</button>
+          <button class="btn secondary" data-module="reuniao">Reunião semanal</button>
+          <button class="btn secondary" data-module="contas">Adicionar conta</button>
+          <button class="btn secondary" data-module="tarefas">Nova tarefa</button>
+          <button class="btn ghost" data-module="apresentacao">Painel apresentação</button>
+        </div></div>
+      </div>`;
+    }
+
+    function homeHubHtml(){
+      return `<div class="section-title"><div><h2>Casa</h2><p>Visão prática do funcionamento da casa: compras, estoque, tarefas e manutenção.</p></div></div>
+      <div class="grid">
+        <div class="card half"><h3>Compras pendentes</h3><div id="hubCompras" class="items"></div></div>
+        <div class="card half"><h3>Estoque baixo</h3><div id="hubEstoque" class="items"></div></div>
+        <div class="card half"><h3>Tarefas abertas</h3><div id="hubTarefas" class="items"></div></div>
+        <div class="card half"><h3>Manutenções próximas</h3><div id="hubManutencao" class="items"></div></div>
+      </div>`;
+    }
+
+    function reportsHtml(){
+      return `<div class="section-title">
+        <div><h2>Relatórios mensais</h2><p>Fechamento financeiro, categorias, pendências, metas e evolução da família.</p></div>
+        <div class="month-select"><input id="reportMonth" class="input" type="month" style="width:auto"><button id="csvBtn" class="btn secondary">CSV</button><button id="printPdfBtn" class="btn secondary">PDF</button></div>
+      </div>
+      <div class="grid">
+        <div class="card"><div class="metric"><div><h3>Entradas</h3><strong id="rIncome">R$ 0</strong><small>mês selecionado</small></div><div class="icon">↗</div></div></div>
+        <div class="card"><div class="metric"><div><h3>Saídas</h3><strong id="rExpense">R$ 0</strong><small>mês selecionado</small></div><div class="icon">↘</div></div></div>
+        <div class="card"><div class="metric"><div><h3>Saldo</h3><strong id="rBalance">R$ 0</strong><small>resultado</small></div><div class="icon">◈</div></div></div>
+        <div class="card wide"><h3>Gastos por categoria</h3><div id="rCategories" class="chart-row"></div></div>
+        <div class="card"><h3>Performance do lar</h3><div id="rPerformance" class="items"></div></div>
+        <div class="card full"><h3>Projetos da família</h3><div id="rGoals" class="items"></div></div>
+        <div class="card wide"><h3>Ranking de gastos</h3><div id="rRanking" class="items"></div></div>
+        <div class="card"><h3>Pendências para o próximo mês</h3><div id="rCarry" class="items"></div></div>
+      </div>`;
+    }
+
+
+    function systemHtml(){
+      return `<div class="section-title"><div><h2>Sistema do Lar</h2><p>Saúde do lar, backup, restauração, lixeira, histórico, instalação e automações sem configuração adicional.</p></div></div>
+      <div class="grid">
+        <div class="card">
+          <h3>Saúde do Lar</h3>
+          <div class="health-orb" id="healthOrb" style="--health:0%"><div><strong id="healthScore">0%</strong><span>organização</span></div></div>
+          <div id="healthDetails" class="items" style="margin-top:14px"></div>
+        </div>
+        <div class="card wide">
+          <h3>Backup, PDF e instalação</h3>
+          <div class="backup-drop">
+            <p class="tiny">Tudo funciona sem novas chaves. O backup é baixado no seu aparelho e pode ser restaurado depois. O PDF usa a função de impressão/salvar como PDF do navegador.</p>
+            <div class="system-actions" style="margin-top:12px">
+              <button id="exportBackupBtn" class="btn">Baixar backup JSON</button>
+              <button id="restoreBackupBtn" class="btn secondary">Restaurar backup</button>
+              <button id="printPdfBtnSystem" class="btn secondary">Gerar PDF</button>
+              <button id="installBtn" class="btn ghost">Instalar app</button>
+              <button id="runRecurrencesBtn" class="btn secondary">Atualizar recorrências</button>
+              <button id="notifyBtnSystem" class="btn secondary">Ativar notificações</button>
+              <button id="privacyToggleBtn" class="btn secondary">Privacidade</button>
+              <button id="privacyPinBtn" class="btn ghost">Definir PIN local</button>
+              <button id="undoTrashBtn" class="btn ghost">Desfazer exclusão</button>
+              <button id="openOnboardingBtn" class="btn ghost">Guia inicial</button>
+              <button id="clearLocalCacheBtn" class="btn ghost">Limpar cache local</button>
+            </div>
+            <input id="backupFile" class="hide" type="file" accept="application/json,.json">
+          </div>
+          <div class="divider"></div>
+          <h3>Status do sistema</h3>
+          <div id="systemStats" class="items"></div>
+          <div class="divider"></div>
+          <h3>Instalar no celular sem pagar nada</h3>
+          <ol class="install-help tiny"><li><b>iPhone/iPad:</b> Safari > Compartilhar > Adicionar à Tela de Início.</li><li><b>Android:</b> Chrome > menu ⋮ > Instalar app ou Adicionar à tela inicial.</li><li>Depois abra pelo ícone para usar em tela cheia.</li></ol>
+        </div>
+        <div class="card wide"><h3>Histórico de alterações</h3><div id="historyList" class="timeline-mini"></div></div>
+        <div class="card"><h3>Lixeira</h3><div id="trashList" class="items"></div></div>
+      </div>`;
+    }
+
+
+    function templatesHtml(){
+      const templates = [
+        ["rotina-semanal", "🏠", "Rotina semanal da casa", "Cria tarefas de limpeza, roupas, lixo, organização e revisão semanal."],
+        ["contas-fixas", "🧾", "Contas fixas mensais", "Cria energia, água, internet, escola, mercado e reserva como base."],
+        ["mercado-basico", "🛒", "Checklist de mercado", "Cria uma lista básica de alimentos, limpeza, higiene e farmácia."],
+        ["estoque-minimo", "📦", "Estoque mínimo", "Cria itens essenciais de despensa, higiene, limpeza e emergência."],
+        ["manutencao-anual", "🛠️", "Manutenção anual", "Cria revisões de ar, caixa d’água, carro, filtros e documentos."],
+        ["documentos-essenciais", "📁", "Documentos essenciais", "Cria uma lista de documentos importantes para localizar e digitalizar."],
+        ["rotina-espiritual", "🕊️", "Rotina espiritual", "Cria devocional, oração do casal, gratidão e leitura bíblica."],
+        ["orcamento-familiar", "📊", "Orçamento familiar", "Cria limites iniciais por categoria para acompanhar gastos."],
+        ["modo-casal", "💞", "Reunião do casal", "Cria pauta semanal para decisões, sonhos, acordos e responsabilidades."]
+      ];
+      return `<div class="section-title"><div><h2>Templates prontos</h2><p>Crie uma estrutura completa sem digitar tudo do zero. Tudo é salvo no Firebase e pode ser editado depois.</p></div></div>
+      <div class="grid">
+        <div class="card full"><h3>Criar base do lar</h3><div class="template-grid">${templates.map(t=>`<button class="btn secondary template-card" data-template="${t[0]}"><strong>${t[1]} ${t[2]}</strong><span>${t[3]}</span></button>`).join("")}</div></div>
+        <div class="card wide"><h3>Assistente de uso gratuito</h3><div class="assistant-line">Sugestão: comece por <b>Contas fixas</b>, depois <b>Checklist de mercado</b>, depois <b>Rotina semanal</b>. Isso já dá controle real sem pagar nada e sem configurar servidor.</div></div>
+        <div class="card"><h3>Economia de Firestore</h3><p class="tiny">Os templates criam somente registros essenciais. Para uso familiar, isso mantém o app leve dentro do plano gratuito.</p></div>
+      </div>`;
+    }
+
+
+    function onboardingHtml(){
+      const completed = onboardingStatus();
+      const steps = [
+        ["login","Entrar com Google","Use somente as contas autorizadas de Marcus e Ingrid.", state.user ? "done":"" , "Entrar", "login"],
+        ["lar","Criar/entrar no lar","Conecta os dois no mesmo banco de dados familiar.", state.familyId ? "done":"", "Abrir lar", "family"],
+        ["privacidade","Definir PIN local","Oculta valores financeiros quando necessário.", state.privacyPinSet ? "done":"", "PIN", "pin"],
+        ["templates","Criar base do lar","Contas, mercado, rotina, espiritualidade e reunião do casal.", completed.templates ? "done":"", "Templates", "templates"],
+        ["agenda","Conectar agenda","Permite enviar compromissos com lembretes para o Google Agenda.", calendarReady ? "done":"", "Conectar", "calendar"],
+        ["instalar","Instalar no celular","Adicione à tela inicial para usar como app no iPhone/Android.", window.matchMedia("(display-mode: standalone)").matches ? "done":"", "Instalar", "install"]
+      ];
+      return `<div class="section-title"><div><h2>Começar bem</h2><p>Guia simples para deixar o Lar Buceles pronto sem pagar nada e sem configurar servidor.</p></div><button id="completeOnboardingBtn" class="btn secondary">Marcar como concluído</button></div>
+      <div class="grid">
+        <div class="card full"><h3>Passos recomendados</h3><div class="onboarding-steps">${steps.map((s,idx)=>`<div class="step-card ${s[3]}"><div class="step-num">${idx+1}</div><b>${s[1]}</b><p>${s[2]}</p><button class="btn small ${s[3]?'ghost':'secondary'}" data-onboard-action="${s[5]}">${s[3]?'Concluído':'Fazer agora'}</button></div>`).join("")}</div></div>
+        <div class="card wide"><h3>Sequência ideal para hoje</h3><div class="assistant-line">1) Criar/entrar no lar. 2) Aplicar templates de contas, mercado e rotina. 3) Definir PIN local. 4) Conectar agenda. 5) Abrir a Reunião semanal para alinhar prioridades.</div></div>
+        <div class="card"><h3>Progresso</h3><div class="health-orb" id="onboardingOrb" style="--health:${completed.percent}%"><div><strong>${completed.percent}%</strong><span>configurado</span></div></div></div>
+      </div>`;
+    }
+
+    function meetingHtml(){
+      return `<div class="section-title"><div><h2>Reunião semanal da família</h2><p>Um ritual rápido para revisar a casa, alinhar decisões e manter o lar em paz.</p></div><button id="saveMeetingBtn" class="btn">Salvar resumo</button></div>
+      <div class="grid">
+        <div class="card"><h3>Checklist da reunião</h3><div class="meeting-checklist" id="meetingChecklist">
+          ${["Revisar contas vencidas e próximas", "Revisar compras e estoque baixo", "Distribuir tarefas da semana", "Conferir agenda familiar", "Revisar projetos/metas", "Conversar sobre decisões pendentes", "Registrar gratidão e oração da semana"].map((t,i)=>`<label><input type="checkbox" value="${esc(t)}"><span>${esc(t)}</span></label>`).join("")}
+        </div></div>
+        <div class="card wide"><h3>Resumo da reunião</h3><div class="form-grid">
+          <label class="field s6"><span>Prioridade da semana</span><input id="meetingPriority" class="input" placeholder="Ex.: organizar contas e mercado"></label>
+          <label class="field s6"><span>Responsável principal</span><select id="meetingOwner" class="input"><option>Casal</option><option>Marcus</option><option>Ingrid</option><option>Família</option></select></label>
+          <label class="field s12"><span>Decisões tomadas</span><textarea id="meetingDecisions" class="input" placeholder="O que ficou decidido?"></textarea></label>
+          <label class="field s12"><span>Pedidos, gratidão ou oração</span><textarea id="meetingPrayer" class="input" placeholder="Registro espiritual/familiar da semana"></textarea></label>
+        </div><div class="divider"></div><div id="meetingPreview" class="assistant-line">Preencha os campos e salve para registrar no histórico do lar.</div></div>
+        <div class="card full"><h3>Últimas reuniões registradas</h3><div id="meetingHistory" class="items"></div></div>
+      </div>`;
+    }
+
+    function presentationHtml(){
+      return `<div class="section-title"><div><h2>Painel apresentação</h2><p>Modo bonito para deixar aberto no computador, tablet ou TV.</p></div><div class="toolbar" style="margin-top:0"><button id="presentationFullscreenBtn" class="btn secondary">Tela cheia</button><button id="presentationExitBtn" class="btn ghost">Sair do modo apresentação</button></div></div>
+      <div class="presentation-board">
+        <div class="card presentation-hero"><div><div class="eyebrow">◉ Lar Buceles ao vivo</div><div id="presentationClock" class="presentation-clock">--:--</div><div id="presentationDate" class="presentation-date">—</div></div><div><h3>Mensagem da semana</h3><div id="presentationMessage" class="assistant-line">O lar ganha força quando há clareza, constância e amor nas pequenas decisões.</div></div></div>
+        <div class="grid" style="grid-template-columns:1fr;gap:14px">
+          <div class="card"><h3>Saúde do Lar</h3><div class="health-orb" id="presentationHealthOrb" style="--health:0%"><div><strong id="presentationHealthScore">0%</strong><span>organização</span></div></div></div>
+          <div class="card"><h3>Próximos compromissos</h3><div id="presentationAgenda" class="presentation-list"></div></div>
+        </div>
+        <div class="card"><h3>Contas e prioridades</h3><div id="presentationAlerts" class="presentation-list"></div></div>
+        <div class="card"><h3>Projetos da família</h3><div id="presentationGoals" class="presentation-list"></div></div>
+      </div>`;
+    }
+
+    function formHtml(type){
+      const fields = schemas[type] || [];
+      return `<form class="form-grid" data-form="${type}">
+        ${fields.map(fieldHtml).join("")}
+        <div class="field s12"><button class="btn">Salvar no Firebase</button></div>
+      </form>`;
+    }
+
+    function fieldHtml(f){
+      const req = f.required ? "required" : "";
+      const span = `s${f.span || 4}`;
+      if(f.type==="textarea") return `<label class="field ${span}"><span>${f.label}</span><textarea name="${f.name}" class="input" placeholder="${f.placeholder||""}" ${req}></textarea></label>`;
+      if(f.type==="select"){
+        const opts = (f.options || []).map(o => Array.isArray(o) ? `<option value="${esc(o[0])}">${esc(o[1])}</option>` : `<option value="${esc(o)}">${esc(o)}</option>`).join("");
+        return `<label class="field ${span}"><span>${f.label}</span><select name="${f.name}" class="input" ${req}>${opts}</select></label>`;
+      }
+      if(f.type==="checkbox") return `<label class="field ${span} switch"><input type="checkbox" name="${f.name}"><span>${f.label}</span></label>`;
+      return `<label class="field ${span}"><span>${f.label}</span><input name="${f.name}" class="input" type="${f.type||"text"}" placeholder="${f.placeholder||""}" step="${f.step||""}" ${req}></label>`;
+    }
+
+    function bind(){
+      document.addEventListener("click", (e) => {
+        const nav = e.target.closest("[data-module]");
+        if(nav){
+          const id = nav.dataset.module;
+          if(id==="mais"){ openModal("moreModal"); return; }
+          closeModal("moreModal"); setActive(id); return;
+        }
+        const close = e.target.closest("[data-close]")?.dataset.close;
+        if(close) closeModal(close);
+        const del = e.target.closest("[data-delete]")?.dataset.delete;
+        if(del) removeItem(del);
+        const toggle = e.target.closest("[data-toggle]");
+        if(toggle) toggleDone(toggle.dataset.toggle, toggle.dataset.field);
+        const sync = e.target.closest("[data-sync]")?.dataset.sync;
+        if(sync) syncAgendaItem(sync);
+        const editGoal = e.target.closest("[data-goal-add]")?.dataset.goalAdd;
+        if(editGoal) addGoalProgress(editGoal);
+        const filter = e.target.closest("[data-filter]");
+        if(filter) setFilter(filter.dataset.filter, filter.dataset.value, filter);
+        const restore = e.target.closest("[data-restore]")?.dataset.restore;
+        if(restore) restoreItem(restore);
+        const forever = e.target.closest("[data-delete-forever]")?.dataset.deleteForever;
+        if(forever) deleteForever(forever);
+        if(e.target.closest("#exportBackupBtn")) exportJson();
+        if(e.target.closest("#restoreBackupBtn")) $("backupFile")?.click();
+        if(e.target.closest("#printPdfBtn") || e.target.closest("#printPdfBtnSystem")) printPdf();
+        if(e.target.closest("#installBtn")) installPwa();
+        if(e.target.closest("#runRecurrencesBtn")) runRecurrences(true);
+        if(e.target.closest("#notifyBtnSystem")) enableNotifications();
+        if(e.target.closest("#privacyToggleBtn")) togglePrivacyMode();
+        if(e.target.closest("#privacyPinBtn")) setPrivacyPin();
+        if(e.target.closest("#clearLocalCacheBtn")) clearLocalCache();
+        if(e.target.closest("#undoTrashBtn")) undoLastDelete();
+        if(e.target.closest("#openOnboardingBtn")) setActive("onboarding");
+        if(e.target.closest("#completeOnboardingBtn")) completeOnboarding();
+        if(e.target.closest("#saveMeetingBtn")) saveMeetingSummary();
+        if(e.target.closest("#presentationFullscreenBtn")) enterPresentationMode();
+        if(e.target.closest("#presentationExitBtn")) exitPresentationMode();
+        const onboard = e.target.closest("[data-onboard-action]")?.dataset.onboardAction;
+        if(onboard) handleOnboardAction(onboard);
+        const tpl = e.target.closest("[data-template]")?.dataset.template;
+        if(tpl) applyTemplate(tpl);
+      });
+      document.addEventListener("submit", (e) => {
+        const type = e.target.dataset.form;
+        if(type){ e.preventDefault(); saveItem(e, type); }
+      });
+      $("loginBtn").onclick = login;
+      $("logoutBtn").onclick = () => signOut(auth);
+      $("calendarBtn").onclick = connectCalendar;
+      $("notifyBtn").onclick = enableNotifications;
+      $("familyBtn").onclick = () => openModal("familyModal");
+      $("mobileFamilyBtn").onclick = () => openModal("familyModal");
+      $("createFamilyBtn").onclick = createFamily;
+      $("joinFamilyBtn").onclick = joinFamily;
+      $("exportBtn").onclick = exportJson;
+      $("globalSearch").addEventListener("input", (e) => { state.search = e.target.value.trim().toLowerCase(); renderAll(); });
+      $("backupFile")?.addEventListener("change", importBackup);
+      document.addEventListener("change", (e)=>{
+        if(e.target.id==="reportMonth"){ state.reportMonth = e.target.value || monthKey(new Date()); renderReports(); }
+      });
+      document.addEventListener("click",(e)=>{ if(e.target.id==="csvBtn") exportCsv(); });
+    }
+
+    async function login(){
+      try{
+        const provider = new GoogleAuthProvider();
+        provider.setCustomParameters({prompt:"select_account"});
+        await signInWithPopup(auth, provider);
+      }catch(e){ toast("Erro ao entrar: " + e.message, "danger"); }
+    }
+
+    function isAllowed(email){ return ALLOWED_EMAILS.includes(String(email||"").toLowerCase()); }
+
+    async function createFamily(){
+      if(!state.user) return toast("Entre com Google primeiro.", "warn");
+      const familyName = $("newFamilyName").value.trim() || "Lar Buceles";
+      const familyPin = $("newFamilyPin").value.trim() || randomPin();
+      const familyId = randomCode();
+      try{
+        await setDoc(doc(db, "familias", familyId), {
+          name: familyName, joinPin: familyPin, ownerUid: state.user.uid,
+          members: {[state.user.uid]: true},
+          memberEmails: {[state.user.uid]: state.user.email},
+          memberNames: {[state.user.uid]: state.user.displayName || state.user.email || "Membro"},
+          allowedEmails: ALLOWED_EMAILS,
+          signature:"Feito por Marcus Buceles e Ingrid Buceles",
+          createdAt: serverTimestamp(), updatedAt: serverTimestamp()
+        });
+        state.familyId = familyId; state.familyPin = familyPin; saveFamilyLocal({familyId, familyPin});
+        await loadFamily(); closeModal("familyModal"); toast("Lar criado e sincronizado.");
+      }catch(e){ toast("Erro ao criar lar: " + e.message, "danger"); }
+    }
+
+    async function joinFamily(){
+      if(!state.user) return toast("Entre com Google primeiro.", "warn");
+      const familyId = $("joinFamilyId").value.trim();
+      const familyPin = $("joinFamilyPin").value.trim();
+      if(!familyId || !familyPin) return toast("Informe código e PIN.", "warn");
+      try{
+        await setDoc(doc(db, "familias", familyId), {
+          joinPin: familyPin,
+          members: {[state.user.uid]: true},
+          memberEmails: {[state.user.uid]: state.user.email},
+          memberNames: {[state.user.uid]: state.user.displayName || state.user.email || "Membro"},
+          updatedAt: serverTimestamp()
+        }, {merge:true});
+        state.familyId = familyId; state.familyPin = familyPin; saveFamilyLocal({familyId, familyPin});
+        await loadFamily(); closeModal("familyModal"); toast("Você entrou no lar.");
+      }catch(e){ toast("Não foi possível entrar. Confira o PIN e as regras do Firestore. " + e.message, "danger"); }
+    }
+
+    async function loadFamily(){
+      if(!state.user || !state.familyId) return;
+      try{
+        const snap = await getDoc(doc(db, "familias", state.familyId));
+        if(snap.exists()) state.familyDoc = snap.data();
+        listenItems();
+        updateFamilyModal();
+      }catch(e){ toast("Erro ao carregar lar: " + e.message, "danger"); }
+    }
+
+    function listenItems(){
+      if(state.unsub) state.unsub();
+      const q = query(collection(db, "familias", state.familyId, "items"), orderBy("createdAt", "desc"), limit(state.loadLimit));
+      state.unsub = onSnapshot(q, (snap)=>{
+        state.allItems = snap.docs.map(d => ({id:d.id, ...d.data()}));
+        state.trash = state.allItems.filter(i => i.deleted);
+        state.items = state.allItems.filter(i => !i.deleted);
+        saveItemsCache();
+        renderAll();
+        maybeNotify();
+        scheduleRecurrenceCheck();
+      }, (e)=>{ loadItemsCache(); renderAll(); toast("Sem conexão com Firestore. Usando cache local quando disponível. " + e.message, "warn"); });
+    }
+
+    async function saveItem(e, type){
+      if(!state.user) return toast("Entre com Google antes de salvar.", "warn");
+      if(!state.familyId) return openModal("familyModal");
+      const form = e.currentTarget;
+      const data = Object.fromEntries(new FormData(form).entries());
+      (schemas[type]||[]).forEach(f => {
+        if(f.type==="checkbox") data[f.name] = !!form.querySelector(`[name="${f.name}"]`)?.checked;
+        if(f.type==="number") data[f.name] = Number(data[f.name] || 0);
+      });
+      data.type = type; data.authorUid = state.user.uid; data.authorName = state.user.displayName || state.user.email || "Membro";
+      data.updatedBy = data.authorName; data.deleted = false; data.createdAt = serverTimestamp(); data.updatedAt = serverTimestamp();
+      data.history = [{action:"criado", by:data.authorName, at:new Date().toISOString()}];
+      data.deviceHint = navigator.userAgent.includes("Mobile") ? "mobile" : "desktop";
+      data.signature = "Feito por Marcus Buceles e Ingrid Buceles";
+      try{
+        const ref = await addDoc(collection(db, "familias", state.familyId, "items"), data);
+        form.reset(); setDefaultDates();
+        if(type==="agenda" && data.calendarSync) await syncAgendaItem(ref.id, data);
+        toast("Registro salvo.");
+      }catch(err){ toast("Erro ao salvar: " + err.message, "danger"); }
+    }
+
+    async function removeItem(id){
+      if(!state.familyId) return;
+      if(!confirm("Mover este registro para a lixeira? Ele poderá ser restaurado depois.")) return;
+      const item = state.allItems.find(i=>i.id===id) || {};
+      const who = state.user?.displayName || state.user?.email || "Membro";
+      const hist = [...(item.history || []), {action:"movido para lixeira", by:who, at:new Date().toISOString()}].slice(-25);
+      try{ await updateDoc(doc(db, "familias", state.familyId, "items", id), {deleted:true, deletedAt:new Date().toISOString(), deletedBy:who, history:hist, updatedAt:serverTimestamp()}); state.lastDeleted = id; toast("Registro movido para a lixeira. Use Sistema > Desfazer exclusão se precisar."); }
+      catch(e){ toast("Erro ao excluir: " + e.message, "danger"); }
+    }
+
+    async function restoreItem(id){
+      if(!state.familyId) return;
+      const item = state.allItems.find(i=>i.id===id) || {};
+      const who = state.user?.displayName || state.user?.email || "Membro";
+      const hist = [...(item.history || []), {action:"restaurado da lixeira", by:who, at:new Date().toISOString()}].slice(-25);
+      try{ await updateDoc(doc(db, "familias", state.familyId, "items", id), {deleted:false, restoredAt:new Date().toISOString(), restoredBy:who, history:hist, updatedAt:serverTimestamp()}); toast("Registro restaurado."); }
+      catch(e){ toast("Erro ao restaurar: " + e.message, "danger"); }
+    }
+
+    async function deleteForever(id){
+      if(!state.familyId) return;
+      if(!confirm("Excluir definitivamente? Esta ação não poderá ser desfeita.")) return;
+      try{ await deleteDoc(doc(db, "familias", state.familyId, "items", id)); toast("Registro apagado definitivamente."); }
+      catch(e){ toast("Erro ao apagar: " + e.message, "danger"); }
+    }
+
+    async function toggleDone(id, field){
+      const item = state.items.find(i=>i.id===id); if(!item) return;
+      const who = state.user?.displayName || state.user?.email || "Membro";
+      const hist = [...(item.history || []), {action:`${field}: ${!item[field]}`, by:who, at:new Date().toISOString()}].slice(-10);
+      try{ const nextVal = !item[field]; await updateDoc(doc(db, "familias", state.familyId, "items", id), {[field]:nextVal, completedAt: nextVal ? new Date().toISOString() : "", history:hist, updatedBy:who, updatedAt:serverTimestamp()}); }
+      catch(e){ toast("Erro ao atualizar: " + e.message, "danger"); }
+    }
+
+    async function addGoalProgress(id){
+      const item = state.items.find(i=>i.id===id); if(!item) return;
+      const val = Number(prompt("Quanto adicionar ao progresso?", "100") || 0);
+      if(!val) return;
+      const next = Number(item.currentAmount||0) + val;
+      try{ await updateDoc(doc(db, "familias", state.familyId, "items", id), {currentAmount:next, updatedAt:serverTimestamp()}); toast("Meta atualizada."); }
+      catch(e){ toast("Erro ao atualizar meta: " + e.message, "danger"); }
+    }
+
+    function renderAll(){
+      updateStatuses();
+      renderMetrics();
+      renderToday();
+      renderCasa();
+      renderReports();
+      renderSystem();
+      Object.keys(schemas).forEach(renderList);
+      renderInsights();
+      updateNetworkStatus();
+      renderLocalAssistant();
+      renderV15Panels();
+    }
+
+    function updateStatuses(){
+      const u = state.user;
+      $("authStatus").textContent = u ? `Conta: ${u.displayName || u.email}` : "Conta: aguardando login";
+      $("authStatus").className = `pill ${u?'ok':'warn'}`;
+      $("familyStatus").textContent = state.familyId ? `Lar: ${state.familyDoc?.name || state.familyId}` : "Lar: não conectado";
+      $("familyStatus").className = `pill ${state.familyId?'ok':'warn'}`;
+      $("calendarStatus").textContent = calendarReady ? "Agenda: conectada" : "Agenda: não conectada";
+      $("calendarStatus").className = `pill ${calendarReady?'ok':'warn'}`;
+      $("loginBtn").classList.toggle("hide", !!u);
+      $("logoutBtn").classList.toggle("hide", !u);
+      updatePrivacyStatus();
+      updateNetworkStatus();
+      updateFamilyModal();
+    }
+
+    function renderMetrics(){
+      const month = monthKey(new Date());
+      const finance = state.items.filter(i=>i.type==="financas" && monthKey(i.date || i.createdAt?.toDate?.() || new Date())===month);
+      const income = sum(finance.filter(i=>i.kind==="entrada"), "amount");
+      const expense = sum(finance.filter(i=>i.kind!=="entrada"), "amount");
+      const pending = state.items.filter(isPending).length;
+      const next = upcomingAgenda()[0];
+      setText("mTotal", state.items.length);
+      setText("mPend", pending);
+      setText("mSaldo", money(income-expense));
+      setText("mNext", next ? dateTimeFmt.format(new Date(next.start)) : "—");
+    }
+
+    function renderToday(){
+      const alerts = getAlerts();
+      const box = $("todayAlerts");
+      if(box) box.innerHTML = alerts.length ? alerts.slice(0,12).map(alertHtml).join("") : `<div class="empty">Nenhum alerta crítico agora. O lar está em ordem.</div>`;
+      const week = getWeekTimeline();
+      const weekBox = $("weekTimeline");
+      if(weekBox) weekBox.innerHTML = week.length ? week.map(timelineHtml).join("") : `<div class="empty">Nenhum compromisso ou vencimento nos próximos 7 dias.</div>`;
+    }
+
+    function renderCasa(){
+      putMiniList("hubCompras", state.items.filter(i=>i.type==="compras" && !i.done).slice(0,5), "compras");
+      putMiniList("hubEstoque", lowStock().slice(0,5), "estoque");
+      putMiniList("hubTarefas", state.items.filter(i=>i.type==="tarefas" && !i.done).slice(0,5), "tarefas");
+      putMiniList("hubManutencao", upcomingType("manutencao", "dueDate", 30).slice(0,5), "manutencao");
+    }
+
+    function renderReports(){
+      const monthInput = $("reportMonth");
+      if(monthInput && !monthInput.value) monthInput.value = state.reportMonth;
+      const finance = state.items.filter(i=>i.type==="financas" && monthKey(i.date || i.createdAt?.toDate?.() || new Date())===state.reportMonth);
+      const income = sum(finance.filter(i=>i.kind==="entrada"), "amount");
+      const expenseItems = finance.filter(i=>i.kind!=="entrada");
+      const expense = sum(expenseItems, "amount");
+      setText("rIncome", money(income)); setText("rExpense", money(expense)); setText("rBalance", money(income-expense));
+      const byCat = groupSum(expenseItems, "category", "amount");
+      const cats = Object.entries(byCat).sort((a,b)=>b[1]-a[1]);
+      const max = Math.max(...cats.map(x=>x[1]), 1);
+      const catBox = $("rCategories");
+      if(catBox) catBox.innerHTML = cats.length ? cats.map(([k,v])=>`<div><div style="display:flex;justify-content:space-between;gap:8px"><b>${esc(k||"Sem categoria")}</b><span>${money(v)}</span></div><div class="progress"><div class="bar" style="width:${Math.min(100,(v/max)*100)}%"></div></div></div>`).join("") : `<div class="empty">Sem saídas no mês selecionado.</div>`;
+      const perf = [
+        ["Contas pendentes", state.items.filter(i=>i.type==="contas" && !i.paid).length],
+        ["Tarefas abertas", state.items.filter(i=>i.type==="tarefas" && !i.done).length],
+        ["Compras pendentes", state.items.filter(i=>i.type==="compras" && !i.done).length],
+        ["Estoque baixo", lowStock().length]
+      ];
+      const perfBox = $("rPerformance");
+      if(perfBox) perfBox.innerHTML = perf.map(([a,b])=>`<div class="alert ${b?'warn':''}"><div class="dot"></div><div><h4>${a}</h4><p>${b} item(ns)</p></div></div>`).join("");
+      const goals = state.items.filter(i=>i.type==="metas");
+      const goalBox = $("rGoals");
+      if(goalBox) goalBox.innerHTML = goals.length ? goals.map(goalCard).join("") : `<div class="empty">Nenhuma meta criada ainda.</div>`;
+    }
+
+    function renderList(type){
+      const box = $(`${type}List`);
+      if(!box) return;
+      const filter = box.dataset.filter || "todos";
+      let items = state.items.filter(i=>i.type===type);
+      if(state.search) items = items.filter(i=>JSON.stringify(i).toLowerCase().includes(state.search));
+      if(filter==="pendentes") items = items.filter(isPending);
+      if(filter==="concluidos") items = items.filter(i=>!isPending(i));
+      box.innerHTML = items.length ? items.map(itemHtml).join("") : `<div class="empty">Nenhum registro encontrado.</div>`;
+    }
+
+    function itemHtml(it){
+      if(it.type==="metas") return goalCard(it);
+      const meta = itemMeta(it);
+      const doneField = doneFieldFor(it.type);
+      const actions = [
+        doneField ? `<button class="btn secondary small" data-toggle="${it.id}" data-field="${doneField}">${it[doneField] ? "Reabrir" : "Concluir"}</button>` : "",
+        it.type==="agenda" ? `<button class="btn secondary small" data-sync="${it.id}">Google Agenda</button>` : "",
+        `<button class="btn danger small" data-delete="${it.id}">Excluir</button>`
+      ].join("");
+      return `<div class="item"><div><h4>${esc(it.title || it.category || "Registro")}</h4><p>${esc(summary(it))}</p><div class="item-meta">${meta}</div></div><div class="item-actions">${actions}</div></div>`;
+    }
+
+    function goalCard(it){
+      const target = Number(it.targetAmount||0);
+      const current = Number(it.currentAmount||0);
+      const pct = target ? Math.min(100, Math.round((current/target)*100)) : 0;
+      return `<div class="item"><div><h4>${esc(it.title||"Meta")}</h4><p>${esc(it.notes||it.category||"Projeto da família")}</p><div class="progress"><div class="bar ${pct>=100?'':'warn'}" style="width:${pct}%"></div></div><div class="item-meta"><span class="pill info">${pct}%</span><span class="pill">${money(current)} / ${money(target)}</span>${it.dueDate?`<span class="pill">Alvo: ${fmtDate(it.dueDate)}</span>`:""}<span class="pill">${esc(it.status||"Em andamento")}</span></div></div><div class="item-actions"><button class="btn secondary small" data-goal-add="${it.id}">Adicionar progresso</button><button class="btn danger small" data-delete="${it.id}">Excluir</button></div></div>`;
+    }
+
+
+    function renderSystem(){
+      const score = healthScore();
+      setText("healthScore", score + "%");
+      const orb = $("healthOrb"); if(orb) orb.style.setProperty("--health", score + "%");
+      const details = healthDetails();
+      setHTML("healthDetails", details.map(d=>`<div class="alert ${d.sev}"><div class="dot"></div><div><h4>${esc(d.title)}</h4><p>${esc(d.detail)}</p></div></div>`).join(""));
+      setHTML("systemStats", systemStatsHtml());
+      renderTrash();
+      renderHistory();
+    }
+
+    function healthScore(){
+      const alerts = getAlerts();
+      const danger = alerts.filter(a=>a.sev==="danger").length;
+      const warn = alerts.filter(a=>a.sev==="warn").length;
+      const pending = state.items.filter(isPending).length;
+      const budgetOver = budgetOverruns().length;
+      let score = 100 - danger*10 - warn*4 - Math.min(20,pending*1.2) - budgetOver*6;
+      return Math.max(0, Math.min(100, Math.round(score)));
+    }
+
+    function healthDetails(){
+      const alerts = getAlerts();
+      const danger = alerts.filter(a=>a.sev==="danger").length;
+      const warn = alerts.filter(a=>a.sev==="warn").length;
+      const pending = state.items.filter(isPending).length;
+      const over = budgetOverruns().length;
+      return [
+        {sev: danger ? "danger":"", title:"Alertas críticos", detail:`${danger} vencido(s)/atrasado(s)`},
+        {sev: warn ? "warn":"", title:"Atenções próximas", detail:`${warn} aviso(s) nos próximos dias`},
+        {sev: pending ? "warn":"", title:"Pendências abertas", detail:`${pending} item(ns) aguardando ação`},
+        {sev: over ? "danger":"", title:"Orçamento", detail: over ? `${over} categoria(s) acima do limite` : "Dentro dos limites cadastrados"}
+      ];
+    }
+
+    function budgetOverruns(){
+      const month = monthKey(new Date());
+      return state.items.filter(i=>i.type==="orcamentos" && (!i.month || i.month===month) && spentByCategory(i.category, month) > Number(i.limit||0));
+    }
+
+    function systemStatsHtml(){
+      const lastBackupHint = localStorage.getItem("larBuceles.lastBackup") || "não registrado";
+      const install = window.matchMedia("(display-mode: standalone)").matches ? "instalado" : "navegador";
+      const rows = [
+        ["Registros ativos", state.items.length],
+        ["Itens na lixeira", state.trash.length],
+        ["Modo de uso", install],
+        ["Conexão", state.online ? "online" : "offline/cache"],
+        ["Cache offline", state.offlineReady ? "ativo" : "limitado pelo navegador"],
+        ["Privacidade", state.privacyLocked ? "valores ocultos" : "normal"],
+        ["Último backup", lastBackupHint],
+        ["Recorrências", state.recurrenceCheckedFor ? `verificadas em ${state.recurrenceCheckedFor}` : "pendentes"]
+      ];
+      return rows.map(([a,b])=>`<div class="alert"><div class="dot"></div><div><h4>${esc(a)}</h4><p>${esc(b)}</p></div></div>`).join("");
+    }
+
+    function renderTrash(){
+      const box = $("trashList"); if(!box) return;
+      box.innerHTML = state.trash.length ? state.trash.slice(0,20).map(i=>`<div class="item"><div><h4>${esc(i.title||i.category||"Registro")}</h4><p>${esc(moduleLabel(i.type))} • excluído por ${esc(i.deletedBy||"membro")} ${i.deletedAt?"em "+fmtDate(i.deletedAt):""}</p></div><div class="item-actions"><button class="btn secondary small" data-restore="${i.id}">Restaurar</button><button class="btn danger small" data-delete-forever="${i.id}">Apagar</button></div></div>`).join("") : `<div class="empty">A lixeira está vazia.</div>`;
+    }
+
+    function renderHistory(){
+      const box = $("historyList"); if(!box) return;
+      const events = [];
+      state.allItems.forEach(i => (i.history || []).forEach(h => events.push({...h, title:i.title||i.category||moduleLabel(i.type), type:i.type, deleted:i.deleted})));
+      events.sort((a,b)=>new Date(b.at)-new Date(a.at));
+      box.innerHTML = events.length ? events.slice(0,40).map(h=>`<div class="timeline-entry"><div class="mark"></div><div><h4>${esc(h.title)} ${h.deleted?"• lixeira":""}</h4><p>${esc(h.action||"alterado")} por ${esc(h.by||"membro")} • ${h.at?dateTimeFmt.format(new Date(h.at)):"sem data"}</p></div></div>`).join("") : `<div class="empty">O histórico aparecerá aqui conforme vocês usarem o app.</div>`;
+    }
+
+    function renderInsights(){
+      const insights = {
+        financas: financeInsight(),
+        contas: `${state.items.filter(i=>i.type==="contas" && !i.paid).length} conta(s) pendente(s). ${upcomingType("contas","dueDate",7).length} vencem em até 7 dias.`,
+        orcamentos: budgetInsight(),
+        compras: `${state.items.filter(i=>i.type==="compras" && !i.done).length} item(ns) ainda não comprados.`,
+        estoque: `${lowStock().length} produto(s) abaixo do mínimo.`,
+        tarefas: `${state.items.filter(i=>i.type==="tarefas" && !i.done).length} tarefa(s) em aberto.`,
+        agenda: `${upcomingAgenda().length} compromisso(s) futuro(s).`,
+        metas: `${state.items.filter(i=>i.type==="metas" && i.status!=="Concluído").length} projeto(s) em andamento.`,
+        casal: `${state.items.filter(i=>i.type==="casal" && i.status!=="Resolvido").length} assunto(s) do casal ainda aberto(s).`,
+        espiritual: `${state.items.filter(i=>i.type==="espiritual" && !i.done).length} registro(s) espiritual(is) em aberto.`,
+        manutencao: `${upcomingType("manutencao","dueDate",30).length} manutenção(ões) nos próximos 30 dias.`,
+        documentos: `${upcomingType("documentos","expiryDate",45).length} documento(s) com validade próxima.`,
+        templates: `Use templates para criar rotina, contas, mercado, documentos, manutenção e vida espiritual em segundos.`,
+        sistema: `Saúde do lar em ${healthScore()}%, ${state.trash.length} item(ns) na lixeira e ${state.allItems.length} registro(s) totais.`,
+        emergencia: `${state.items.filter(i=>i.type==="emergencia").length} contato(s)/informação(ões) crítica(s) cadastrados.`
+      };
+      Object.entries(insights).forEach(([k,v])=>setHTML(`${k}Insight`, `<p>${v}</p>`));
+    }
+
+    function financeInsight(){
+      const month = monthKey(new Date());
+      const finance = state.items.filter(i=>i.type==="financas" && monthKey(i.date || new Date())===month);
+      const income = sum(finance.filter(i=>i.kind==="entrada"),"amount");
+      const expense = sum(finance.filter(i=>i.kind!=="entrada"),"amount");
+      return `Neste mês: ${money(income)} de entradas, ${money(expense)} de saídas e saldo de ${money(income-expense)}.`;
+    }
+
+    function budgetInsight(){
+      const month = monthKey(new Date());
+      const budgets = state.items.filter(i=>i.type==="orcamentos" && (!i.month || i.month===month));
+      if(!budgets.length) return "Crie limites por categoria para acompanhar o orçamento.";
+      const bad = budgets.filter(b => spentByCategory(b.category, month) > Number(b.limit||0));
+      return bad.length ? `${bad.length} categoria(s) passaram do limite.` : "Todos os orçamentos cadastrados estão dentro do limite.";
+    }
+
+    function setFilter(type, value, btn){
+      const box = $(`${type}List`);
+      if(box) box.dataset.filter = value;
+      btn.parentElement.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+      btn.classList.add("active");
+      renderList(type);
+    }
+
+    function getAlerts(){
+      const arr = [];
+      const now = startOfDay(new Date());
+      state.items.forEach(i=>{
+        if(i.type==="contas" && !i.paid && i.dueDate){
+          const d = startOfDay(new Date(i.dueDate+"T00:00:00"));
+          const diff = daysBetween(now,d);
+          if(diff < 0) arr.push({sev:"danger", title:`Conta vencida: ${i.title}`, detail:`Venceu em ${fmtDate(i.dueDate)} • ${money(i.amount||0)}`, module:"contas"});
+          else if(diff <= Number(i.reminderDays||3)) arr.push({sev:"warn", title:`Conta próxima: ${i.title}`, detail:`Vence em ${diff===0?"hoje":diff+" dia(s)"} • ${money(i.amount||0)}`, module:"contas"});
+        }
+        if(i.type==="tarefas" && !i.done && i.dueDate){
+          const diff = daysBetween(now,startOfDay(new Date(i.dueDate+"T00:00:00")));
+          if(diff < 0) arr.push({sev:"danger", title:`Tarefa atrasada: ${i.title}`, detail:`Responsável: ${i.owner||"não definido"}`, module:"tarefas"});
+          else if(diff <= 1) arr.push({sev:"warn", title:`Tarefa para ${diff===0?"hoje":"amanhã"}: ${i.title}`, detail:`Prioridade: ${i.priority||"Normal"}`, module:"tarefas"});
+        }
+        if(i.type==="manutencao" && !i.done && i.dueDate){
+          const diff = daysBetween(now,startOfDay(new Date(i.dueDate+"T00:00:00")));
+          if(diff < 0) arr.push({sev:"danger", title:`Manutenção atrasada: ${i.title}`, detail:`Área: ${i.area||"Casa"}`, module:"manutencao"});
+          else if(diff <= 7) arr.push({sev:"warn", title:`Manutenção próxima: ${i.title}`, detail:`Em ${diff} dia(s)`, module:"manutencao"});
+        }
+        if(i.type==="documentos" && i.expiryDate){
+          const diff = daysBetween(now,startOfDay(new Date(i.expiryDate+"T00:00:00")));
+          if(diff >= 0 && diff <= 30) arr.push({sev:"warn", title:`Documento perto da validade: ${i.title}`, detail:`Validade: ${fmtDate(i.expiryDate)}`, module:"documentos"});
+        }
+        if(i.type==="estoque" && Number(i.current||0) <= Number(i.minimum||0)) arr.push({sev:"warn", title:`Estoque baixo: ${i.title}`, detail:`Atual: ${i.current||0} ${i.unit||""} • mínimo: ${i.minimum||0}`, module:"estoque"});
+        if(i.type==="espiritual" && !i.done && i.date){
+          const diff = daysBetween(now,startOfDay(new Date(i.date+"T00:00:00")));
+          if(diff < 0) arr.push({sev:"warn", title:`Rotina espiritual pendente: ${i.title}`, detail:`${i.category||"Espiritual"} • ${i.owner||"Família"}`, module:"espiritual"});
+        }
+      });
+      return arr;
+    }
+
+    function getWeekTimeline(){
+      const now = startOfDay(new Date());
+      const end = new Date(now); end.setDate(end.getDate()+7);
+      const list = [];
+      state.items.forEach(i=>{
+        const date = i.start || i.dueDate || i.expiryDate;
+        if(!date) return;
+        const d = new Date(String(date).includes("T") ? date : date+"T00:00:00");
+        if(d >= now && d <= end) list.push({...i, sortDate:d});
+      });
+      return list.sort((a,b)=>a.sortDate-b.sortDate).slice(0,15);
+    }
+
+    function alertHtml(a){ return `<button class="alert ${a.sev}" data-module="${a.module}" style="text-align:left;width:100%"><div class="dot"></div><div><h4>${esc(a.title)}</h4><p>${esc(a.detail)}</p></div></button>`; }
+    function timelineHtml(i){ return `<button class="alert" data-module="${i.type}" style="text-align:left;width:100%"><div class="dot"></div><div><h4>${esc(i.title||i.type)}</h4><p>${dateTimeFmt.format(i.sortDate)} • ${esc(moduleLabel(i.type))}</p></div></button>`; }
+
+    function putMiniList(id, items, moduleId){
+      const box = $(id);
+      if(!box) return;
+      box.innerHTML = items.length ? items.map(i=>`<button class="alert" data-module="${moduleId}" style="text-align:left;width:100%"><div class="dot"></div><div><h4>${esc(i.title||i.category||"Item")}</h4><p>${esc(summary(i))}</p></div></button>`).join("") : `<div class="empty">Nada pendente aqui.</div>`;
+    }
+
+    function itemMeta(i){
+      const parts = [];
+      if(i.amount) parts.push(money(i.amount));
+      if(i.date) parts.push(fmtDate(i.date));
+      if(i.dueDate) parts.push("Prazo: "+fmtDate(i.dueDate));
+      if(i.start) parts.push(dateTimeFmt.format(new Date(i.start)));
+      if(i.category) parts.push(i.category);
+      if(i.owner) parts.push(i.owner);
+      if(i.updatedBy) parts.push("Atualizado por "+i.updatedBy);
+      return parts.map(p=>`<span class="pill">${esc(p)}</span>`).join("");
+    }
+
+    function summary(i){
+      if(i.type==="financas") return `${i.kind==="entrada"?"Entrada":"Saída"} • ${money(i.amount||0)} • ${i.category||"Sem categoria"}${i.notes?" • "+i.notes:""}`;
+      if(i.type==="contas") return `${i.paid?"Pago":"Pendente"} • vencimento ${i.dueDate?fmtDate(i.dueDate):"não definido"} • ${money(i.amount||0)}`;
+      if(i.type==="orcamentos") return `Limite ${money(i.limit||0)} • gasto atual ${money(spentByCategory(i.category, i.month || monthKey(new Date())))}`;
+      if(i.type==="estoque") return `Atual ${i.current||0} ${i.unit||""} • mínimo ${i.minimum||0} • ${i.location||"sem local"}`;
+      if(i.type==="agenda") return `${i.start?dateTimeFmt.format(new Date(i.start)):"sem data"}${i.location?" • "+i.location:""}`;
+      if(i.type==="documentos") return `${i.category||""} • ${i.location||"sem localização"}${i.expiryDate?" • validade "+fmtDate(i.expiryDate):""}`;
+      if(i.type==="emergencia") return `${i.name||""} ${i.phone?"• "+i.phone:""} ${i.notes?"• "+i.notes:""}`;
+      if(i.type==="espiritual") return `${i.category||"Espiritual"} • ${i.owner||"Família"}${i.verse?" • "+i.verse:""}${i.notes?" • "+i.notes:""}`;
+      return `${i.done||i.paid?"Concluído":"Pendente"}${i.dueDate?" • "+fmtDate(i.dueDate):""}${i.notes?" • "+i.notes:""}`;
+    }
+
+    function doneFieldFor(type){
+      if(["compras","tarefas","manutencao","espiritual"].includes(type)) return "done";
+      if(type==="contas") return "paid";
+      return null;
+    }
+
+    function isPending(i){
+      if(i.type==="contas") return !i.paid;
+      if(["compras","tarefas","manutencao","espiritual"].includes(i.type)) return !i.done;
+      if(i.type==="casal") return i.status !== "Resolvido";
+      if(i.type==="metas") return i.status !== "Concluído";
+      return true;
+    }
+
+    function lowStock(){ return state.items.filter(i=>i.type==="estoque" && Number(i.current||0) <= Number(i.minimum||0)); }
+    function upcomingAgenda(){ return state.items.filter(i=>i.type==="agenda" && i.start).map(i=>({...i, d:new Date(i.start)})).filter(i=>!Number.isNaN(i.d) && i.d >= new Date()).sort((a,b)=>a.d-b.d); }
+    function upcomingType(type, field, days){
+      const now = startOfDay(new Date()); const end = new Date(now); end.setDate(end.getDate()+days);
+      return state.items.filter(i=>i.type===type && i[field]).filter(i=>{ const d=new Date(i[field]+"T00:00:00"); return d>=now && d<=end; }).sort((a,b)=>new Date(a[field])-new Date(b[field]));
+    }
+
+    function moduleLabel(id){ return modules.find(m=>m.id===id)?.label || id; }
+    function setActive(id){
+      state.active = id;
+      const m = modules.find(x=>x.id===id) || modules[0];
+      $("pageTitle").textContent = m.label === "Projetos" ? "Projetos da Família" : m.label;
+      $("pageSubtitle").textContent = m.desc;
+      document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+      $(`panel-${id}`)?.classList.add("active");
+      document.querySelectorAll("[data-module]").forEach(b=>b.classList.toggle("active", b.dataset.module===id));
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+
+    function openModal(id){ $(id)?.classList.add("active"); if(id==="familyModal") updateFamilyModal(); }
+    function closeModal(id){ $(id)?.classList.remove("active"); }
+    function updateFamilyModal(){
+      const box = $("currentFamilyBox");
+      if(!box) return;
+      if(!state.familyId){ box.classList.add("hide"); return; }
+      box.classList.remove("hide");
+      $("currentFamilyCode").textContent = `Código do lar: ${state.familyId}\nPIN: ${state.familyPin || "oculto"}\nContas autorizadas:\n- ${ALLOWED_EMAILS.join("\n- ")}`;
+    }
+
+
+    async function enableOfflinePersistence(){
+      try{
+        await enableMultiTabIndexedDbPersistence(db);
+        state.offlineReady = true;
+      }catch(e){
+        state.offlineReady = false;
+      }
+      updateNetworkStatus();
+    }
+
+    function updateNetworkStatus(){
+      document.body.classList.toggle("offline", !state.online);
+      const txt = state.online ? (state.offlineReady ? "Online • cache ativo" : "Online") : "Offline • cache local";
+      const el = $("syncStatus");
+      if(el){ el.textContent = txt; el.className = `pill ${state.online ? 'info':'warn'}`; }
+    }
+
+    function updatePrivacyStatus(){
+      const active = state.privacyLocked;
+      document.body.classList.toggle("privacy-on", active);
+      const el = $("privacyStatus");
+      if(el){ el.textContent = active ? "Privacidade: valores ocultos" : "Privacidade: normal"; el.className = `pill ${active ? 'warn':'info'}`; }
+      const btn = $("privacyToggleBtn");
+      if(btn) btn.textContent = active ? "Desbloquear privacidade" : "Ocultar valores";
+    }
+
+    function setPrivacyPin(){
+      const current = localStorage.getItem("larBuceles.privacyPin");
+      if(current){
+        const old = prompt("Digite o PIN atual para trocar:");
+        if(old !== current) return toast("PIN incorreto.", "danger");
+      }
+      const pin = prompt("Defina um PIN local de 4 a 8 números:");
+      if(!pin) return;
+      if(!/^\d{4,8}$/.test(pin)) return toast("Use somente 4 a 8 números.", "warn");
+      localStorage.setItem("larBuceles.privacyPin", pin);
+      state.privacyPinSet = true;
+      toast("PIN local salvo neste aparelho.");
+      renderSystem();
+    }
+
+    function togglePrivacyMode(){
+      const pin = localStorage.getItem("larBuceles.privacyPin");
+      if(state.privacyLocked){
+        if(pin){
+          const typed = prompt("Digite o PIN local para mostrar valores:");
+          if(typed !== pin) return toast("PIN incorreto.", "danger");
+        }
+        state.privacyLocked = false;
+      } else {
+        if(!pin){
+          const create = confirm("Você ainda não definiu um PIN local. Deseja criar agora?");
+          if(create) setPrivacyPin();
+        }
+        state.privacyLocked = true;
+      }
+      localStorage.setItem("larBuceles.privacyLocked", String(state.privacyLocked));
+      updatePrivacyStatus();
+      renderAll();
+    }
+
+    function clearLocalCache(){
+      if(!confirm("Limpar cache local do aparelho? Os dados no Firebase não serão apagados.")) return;
+      Object.keys(localStorage).filter(k=>k.startsWith("larBuceles.cache") || k.startsWith("larBuceles.lastBackup")).forEach(k=>localStorage.removeItem(k));
+      toast("Cache local limpo neste aparelho.");
+      renderSystem();
+    }
+
+    function saveItemsCache(){
+      try{ if(state.familyId) localStorage.setItem("larBuceles.cache."+state.familyId, JSON.stringify({at:new Date().toISOString(), items:state.allItems})); }catch(e){}
+    }
+
+    function loadItemsCache(){
+      try{
+        if(!state.familyId) return;
+        const cached = JSON.parse(localStorage.getItem("larBuceles.cache."+state.familyId)||"null");
+        if(cached?.items?.length){
+          state.allItems = cached.items;
+          state.trash = state.allItems.filter(i=>i.deleted);
+          state.items = state.allItems.filter(i=>!i.deleted);
+        }
+      }catch(e){}
+    }
+
+    function renderLocalAssistant(){
+      const box = $("localAssistant");
+      if(!box) return;
+      const alerts = getAlerts();
+      const danger = alerts.filter(a=>a.sev==="danger");
+      const warn = alerts.filter(a=>a.sev==="warn");
+      const month = monthKey(new Date());
+      const over = budgetOverruns();
+      const spiritual = state.items.filter(i=>i.type==="espiritual" && !i.done).length;
+      let msg = "O lar está estável. Mantenham a revisão semanal e atualizem compras, contas e tarefas.";
+      if(danger.length) msg = `Prioridade máxima: ${danger[0].title}. Existem ${danger.length} alerta(s) crítico(s) para resolver.`;
+      else if(over.length) msg = `Atenção ao orçamento: ${over.length} categoria(s) acima do limite neste mês (${month}).`;
+      else if(warn.length) msg = `Hoje vale olhar ${warn.length} aviso(s), começando por: ${warn[0].title}.`;
+      else if(spiritual) msg = `Há ${spiritual} rotina(s) espiritual(is) em aberto. Um pequeno momento em família hoje já mantém o propósito vivo.`;
+      box.innerHTML = esc(msg);
+    }
+
+    async function applyTemplate(name){
+      if(!state.user) return toast("Entre com Google antes de criar templates.", "warn");
+      if(!state.familyId) return openModal("familyModal");
+      const items = templateItems(name);
+      if(!items.length) return toast("Template não encontrado.", "warn");
+      if(!confirm(`Criar ${items.length} registro(s) deste template?`)) return;
+      const who = state.user?.displayName || state.user?.email || "Membro";
+      let count = 0;
+      for(const data of items){
+        const payload = {...data, authorUid:state.user.uid, authorName:who, updatedBy:who, deleted:false, fromTemplate:name, history:[{action:"criado por template", by:who, at:new Date().toISOString()}], signature:"Feito por Marcus Buceles e Ingrid Buceles", createdAt:serverTimestamp(), updatedAt:serverTimestamp()};
+        await addDoc(collection(db, "familias", state.familyId, "items"), payload);
+        count++;
+      }
+      toast(`${count} registro(s) criados pelo template.`);
+    }
+
+    function templateItems(name){
+      const today = new Date();
+      const d = (add=0) => { const x=new Date(today); x.setDate(x.getDate()+add); return x.toISOString().slice(0,10); };
+      const m = monthKey(today);
+      const map = {
+        "rotina-semanal": [
+          {type:"tarefas", title:"Reunião semanal do lar", owner:"Casal", dueDate:d(1), priority:"Alta", frequency:"Semanal", done:false, notes:"Revisar agenda, contas, compras, tarefas e prioridades."},
+          {type:"tarefas", title:"Limpeza dos banheiros", owner:"Família", dueDate:d(2), priority:"Normal", frequency:"Semanal", done:false},
+          {type:"tarefas", title:"Lavar e organizar roupas", owner:"Família", dueDate:d(3), priority:"Normal", frequency:"Semanal", done:false},
+          {type:"tarefas", title:"Revisar geladeira e despensa", owner:"Casal", dueDate:d(4), priority:"Normal", frequency:"Semanal", done:false},
+          {type:"tarefas", title:"Organizar documentos e mesa", owner:"Casal", dueDate:d(5), priority:"Baixa", frequency:"Mensal", done:false}
+        ],
+        "contas-fixas": [
+          {type:"contas", title:"Energia", amount:0, dueDate:d(7), reminderDays:3, recurrence:"Mensal", paid:false},
+          {type:"contas", title:"Água", amount:0, dueDate:d(9), reminderDays:3, recurrence:"Mensal", paid:false},
+          {type:"contas", title:"Internet", amount:0, dueDate:d(10), reminderDays:3, recurrence:"Mensal", paid:false},
+          {type:"contas", title:"Mercado mensal", amount:0, dueDate:d(1), reminderDays:2, recurrence:"Mensal", paid:false},
+          {type:"contas", title:"Reserva/Investimento", amount:0, dueDate:d(5), reminderDays:2, recurrence:"Mensal", paid:false}
+        ],
+        "mercado-basico": ["Arroz","Feijão","Leite","Ovos","Frutas","Verduras","Carne/Frango","Café","Sabão em pó","Detergente","Papel higiênico","Pasta de dente"].map(t=>({type:"compras", title:t, quantity:"1", category:["Sabão em pó","Detergente"].includes(t)?"Limpeza":["Papel higiênico","Pasta de dente"].includes(t)?"Higiene":"Mercado", priority:"Normal", done:false})),
+        "estoque-minimo": [
+          {type:"estoque", title:"Arroz", current:1, minimum:1, unit:"pct", location:"Despensa"},
+          {type:"estoque", title:"Papel higiênico", current:4, minimum:4, unit:"rolos", location:"Banheiro/depósito"},
+          {type:"estoque", title:"Sabão em pó", current:1, minimum:1, unit:"un", location:"Área de serviço"},
+          {type:"estoque", title:"Remédios básicos", current:1, minimum:1, unit:"kit", location:"Farmacinha"},
+          {type:"estoque", title:"Gás", current:1, minimum:1, unit:"botijão", location:"Cozinha"}
+        ],
+        "manutencao-anual": [
+          {type:"manutencao", title:"Limpeza do ar-condicionado", area:"Casa", dueDate:d(30), frequency:"Semestral", done:false},
+          {type:"manutencao", title:"Limpeza da caixa d’água", area:"Casa", dueDate:d(60), frequency:"Semestral", done:false},
+          {type:"manutencao", title:"Revisão do carro", area:"Carro", dueDate:d(90), frequency:"Semestral", done:false},
+          {type:"manutencao", title:"Conferir extintor/segurança", area:"Segurança", dueDate:d(120), frequency:"Anual", done:false}
+        ],
+        "documentos-essenciais": ["RG/CPF","Certidão de casamento","Documentos do imóvel","Documentos do carro","Exames e receitas médicas","Garantias e notas fiscais","Imposto de renda"].map(t=>({type:"documentos", title:t, category:"Pessoal", location:"A definir", notes:"Digitalizar e guardar na pasta da família."})),
+        "rotina-espiritual": [
+          {type:"espiritual", title:"Devocional do casal", category:"Devocional", date:d(0), owner:"Casal", done:false, verse:"Salmo 127:1", notes:"Separar 10 minutos para oração e reflexão."},
+          {type:"espiritual", title:"Pedido de oração da semana", category:"Oração", date:d(1), owner:"Família", done:false},
+          {type:"espiritual", title:"Gratidão do dia", category:"Gratidão", date:d(0), owner:"Família", done:false},
+          {type:"espiritual", title:"Leitura bíblica familiar", category:"Leitura bíblica", date:d(2), owner:"Família", done:false}
+        ],
+        "orcamento-familiar": [
+          {type:"orcamentos", category:"Mercado", month:m, limit:0, notes:"Definir limite realista."},
+          {type:"orcamentos", category:"Moradia", month:m, limit:0, notes:"Aluguel/financiamento, condomínio e contas."},
+          {type:"orcamentos", category:"Transporte", month:m, limit:0, notes:"Combustível, app, manutenção."},
+          {type:"orcamentos", category:"Lazer", month:m, limit:0, notes:"Passeios, refeições fora e entretenimento."},
+          {type:"orcamentos", category:"Reserva", month:m, limit:0, notes:"Meta de reserva e investimentos."}
+        ],
+        "modo-casal": [
+          {type:"casal", title:"Reunião do casal", category:"Conversa pendente", owner:"Casal", dueDate:d(1), status:"Aberto", notes:"Revisar semana, sonhos, ajustes e responsabilidades."},
+          {type:"casal", title:"Sonho da família", category:"Sonho", owner:"Casal", dueDate:d(30), status:"Planejado", notes:"Definir próximo objetivo familiar."},
+          {type:"casal", title:"Acordo de responsabilidades", category:"Acordo do lar", owner:"Casal", dueDate:d(7), status:"Em conversa", notes:"Alinhar tarefas da semana."}
+        ]
+      };
+      return map[name] || [];
+    }
+
+
+    function onboardingStatus(){
+      const done = {templates: state.items.some(i=>i.fromTemplate), local: state.onboardingDone};
+      const checks = [!!state.user, !!state.familyId, !!state.privacyPinSet, !!done.templates, !!calendarReady, window.matchMedia("(display-mode: standalone)").matches || !!localStorage.getItem("larBuceles.installHintSeen")];
+      return {templates: done.templates, percent: Math.round((checks.filter(Boolean).length / checks.length) * 100)};
+    }
+
+    function handleOnboardAction(action){
+      if(action==="login") return login();
+      if(action==="family") return openModal("familyModal");
+      if(action==="pin") return setPrivacyPin();
+      if(action==="templates") return setActive("templates");
+      if(action==="calendar") return connectCalendar();
+      if(action==="install"){ localStorage.setItem("larBuceles.installHintSeen","1"); return installPwa(); }
+    }
+
+    function completeOnboarding(){
+      localStorage.setItem("larBuceles.onboarding.v16", "done");
+      state.onboardingDone = true;
+      toast("Guia inicial marcado como concluído.");
+      renderV15Panels();
+    }
+
+    async function saveMeetingSummary(){
+      if(!state.user) return toast("Entre com Google antes de salvar a reunião.", "warn");
+      if(!state.familyId) return openModal("familyModal");
+      const checked = Array.from(document.querySelectorAll('#meetingChecklist input:checked')).map(x=>x.value);
+      const priority = $("meetingPriority")?.value?.trim() || "Reunião semanal do lar";
+      const owner = $("meetingOwner")?.value || "Casal";
+      const decisions = $("meetingDecisions")?.value?.trim() || "Sem decisões registradas.";
+      const prayer = $("meetingPrayer")?.value?.trim() || "";
+      const who = state.user?.displayName || state.user?.email || "Membro";
+      const notes = `Checklist concluído:\n- ${checked.join("\n- ") || "Nenhum item marcado"}\n\nDecisões:\n${decisions}\n\nPedidos/gratidão/oração:\n${prayer || "Não informado"}`;
+      try{
+        await addDoc(collection(db, "familias", state.familyId, "items"), {
+          type:"reuniao", title:priority, category:"Reunião semanal", owner, date:new Date().toISOString().slice(0,10), status:"Registrada", notes,
+          authorUid:state.user.uid, authorName:who, updatedBy:who, deleted:false,
+          history:[{action:"reunião semanal registrada", by:who, at:new Date().toISOString()}],
+          signature:"Feito por Marcus Buceles e Ingrid Buceles", createdAt:serverTimestamp(), updatedAt:serverTimestamp()
+        });
+        ["meetingPriority","meetingDecisions","meetingPrayer"].forEach(id=>{ if($(id)) $(id).value=""; });
+        document.querySelectorAll('#meetingChecklist input').forEach(x=>x.checked=false);
+        toast("Resumo da reunião salvo no lar.");
+      }catch(e){ toast("Erro ao salvar reunião: " + e.message, "danger"); }
+    }
+
+    function enterPresentationMode(){
+      document.body.classList.add("presentation-mode");
+      setActive("apresentacao");
+      document.documentElement.requestFullscreen?.().catch(()=>{});
+      renderPresentation();
+    }
+
+    function exitPresentationMode(){
+      document.body.classList.remove("presentation-mode");
+      if(document.fullscreenElement) document.exitFullscreen?.().catch(()=>{});
+      toast("Modo apresentação encerrado.");
+    }
+
+    async function undoLastDelete(){
+      if(!state.lastDeleted) return toast("Não há exclusão recente para desfazer.", "warn");
+      await restoreItem(state.lastDeleted);
+      state.lastDeleted = null;
+    }
+
+    function renderV15Panels(){
+      renderOnboarding();
+      renderMeeting();
+      renderPresentation();
+      renderReportPolish();
+      const score = healthScore();
+      setText("todayHealthScore", score + "%");
+      const orb = $("todayHealthOrb"); if(orb) orb.style.setProperty("--health", score + "%");
+      renderMeetingPreview();
+    }
+
+    function renderOnboarding(){
+      const orb = $("onboardingOrb");
+      if(orb) orb.style.setProperty("--health", onboardingStatus().percent + "%");
+    }
+
+    function renderMeeting(){
+      const box = $("meetingHistory");
+      if(!box) return;
+      const meetings = state.items.filter(i=>i.type==="reuniao").sort((a,b)=>String(b.date||"").localeCompare(String(a.date||""))).slice(0,8);
+      box.innerHTML = meetings.length ? meetings.map(i=>`<div class="item"><div><h4>${esc(i.title||"Reunião semanal")}</h4><p>${esc(i.notes||"").replaceAll("\n","<br>")}</p><div class="item-meta"><span class="pill">${fmtDate(i.date||new Date())}</span><span class="pill">${esc(i.owner||"Casal")}</span></div></div><div class="item-actions"><button class="btn danger small" data-delete="${i.id}">Excluir</button></div></div>`).join("") : `<div class="empty">Nenhuma reunião registrada ainda.</div>`;
+    }
+
+    function renderMeetingPreview(){
+      const box = $("meetingPreview");
+      if(!box) return;
+      const alerts = getAlerts();
+      const pending = state.items.filter(isPending).length;
+      box.innerHTML = `Sugestão de pauta: ${alerts.length ? `começar por <b>${esc(alerts[0].title)}</b>` : "revisar agenda, compras e metas"}. Existem <b>${pending}</b> pendência(s) aberta(s).`;
+    }
+
+    function renderPresentation(){
+      const now = new Date();
+      setText("presentationClock", now.toLocaleTimeString("pt-BR", {hour:"2-digit", minute:"2-digit"}));
+      setText("presentationDate", now.toLocaleDateString("pt-BR", {weekday:"long", day:"2-digit", month:"long", year:"numeric"}));
+      const score = healthScore();
+      setText("presentationHealthScore", score + "%");
+      const orb = $("presentationHealthOrb"); if(orb) orb.style.setProperty("--health", score + "%");
+      const alerts = getAlerts().slice(0,5);
+      setHTML("presentationAlerts", alerts.length ? alerts.map(alertHtml).join("") : `<div class="empty">Sem alertas importantes.</div>`);
+      const agenda = upcomingAgenda().slice(0,5).map(i=>({sev:"", title:i.title||"Compromisso", detail:`${fmtDate(i.start)} • ${i.location||"sem local"}`, module:"agenda"}));
+      setHTML("presentationAgenda", agenda.length ? agenda.map(alertHtml).join("") : `<div class="empty">Sem compromissos próximos.</div>`);
+      const goals = state.items.filter(i=>i.type==="metas" && i.status!=="Concluído").slice(0,5);
+      setHTML("presentationGoals", goals.length ? goals.map(g=>`<div class="alert"><div class="dot"></div><div><h4>${esc(g.title||"Projeto")}</h4><p>${goalPct(g)}% • ${esc(g.category||"Família")}</p></div></div>`).join("") : `<div class="empty">Sem projetos em andamento.</div>`);
+      const spiritual = state.items.find(i=>i.type==="espiritual" && (i.verse || i.notes));
+      setHTML("presentationMessage", spiritual ? `${esc(spiritual.verse || spiritual.title)}<br><span class="tiny">${esc(spiritual.notes || "")}</span>` : "O lar ganha força quando há clareza, constância e amor nas pequenas decisões.");
+    }
+
+    function renderReportPolish(){
+      const month = state.reportMonth || monthKey(new Date());
+      const expenses = state.items.filter(i=>i.type==="financas" && i.kind!=="entrada" && monthKey(i.date || new Date())===month);
+      const grouped = Object.entries(groupSum(expenses, "category", "amount")).sort((a,b)=>b[1]-a[1]).slice(0,7);
+      setHTML("rRanking", grouped.length ? grouped.map(([cat,val],idx)=>`<div class="alert"><div class="dot"></div><div><h4>${idx+1}. ${esc(cat)}</h4><p>${money(val)}</p></div></div>`).join("") : `<div class="empty">Sem gastos registrados no mês.</div>`);
+      const carry = state.items.filter(isPending).slice(0,8);
+      setHTML("rCarry", carry.length ? carry.map(i=>`<button class="alert" data-module="${i.type}" style="text-align:left;width:100%"><div class="dot"></div><div><h4>${esc(i.title||i.category||"Pendência")}</h4><p>${esc(moduleLabel(i.type))} • ${esc(summary(i))}</p></div></button>`).join("") : `<div class="empty">Nada para carregar ao próximo mês.</div>`);
+    }
+
+    function goalPct(g){
+      const target = Number(g.targetAmount||0); const current = Number(g.currentAmount||0);
+      return target ? Math.min(100, Math.round((current/target)*100)) : 0;
+    }
+
+    setInterval(()=>{ if($("presentationClock")) renderPresentation(); }, 30000);
+
+
+
+    /* ========================= v16 MASTER FREE OVERRIDES ========================= */
+    const V16_VERSION = "v16-master-free";
+    const ADV_KEY = "larBuceles.v16.advancedFilters";
+    const LOCK_MINUTES_KEY = "larBuceles.v16.autoLockMinutes";
+    let v16IdleTimer = null;
+
+    function v16GetFilters(type){
+      const box = $(`${type}AdvancedFilters`);
+      if(!box) return {};
+      return {
+        text: box.querySelector('[data-adv="text"]')?.value?.trim().toLowerCase() || "",
+        owner: box.querySelector('[data-adv="owner"]')?.value || "",
+        priority: box.querySelector('[data-adv="priority"]')?.value || "",
+        from: box.querySelector('[data-adv="from"]')?.value || "",
+        to: box.querySelector('[data-adv="to"]')?.value || ""
+      };
+    }
+    function v16ItemDate(i){ return i.date || i.dueDate || (i.start?String(i.start).slice(0,10):"") || i.expiryDate || ""; }
+    function v16ApplyFilters(items,type){
+      const f = v16GetFilters(type);
+      if(f.text) items = items.filter(i=>JSON.stringify(i).toLowerCase().includes(f.text));
+      if(f.owner) items = items.filter(i=>String(i.owner||i.authorName||"").toLowerCase().includes(f.owner.toLowerCase()));
+      if(f.priority) items = items.filter(i=>String(i.priority||i.status||"").toLowerCase()===f.priority.toLowerCase());
+      if(f.from) items = items.filter(i=>v16ItemDate(i) && v16ItemDate(i)>=f.from);
+      if(f.to) items = items.filter(i=>v16ItemDate(i) && v16ItemDate(i)<=f.to);
+      return items;
+    }
+    function v16AdvancedFilterHtml(type){
+      return `<div class="advanced-filter" id="${type}AdvancedFilters">
+        <input class="input wide-filter" data-adv="text" placeholder="Filtrar neste módulo...">
+        <input class="input" data-adv="owner" placeholder="Responsável/autor">
+        <select class="input" data-adv="priority"><option value="">Status/prioridade</option><option>Alta</option><option>Normal</option><option>Baixa</option><option>Aberto</option><option>Resolvido</option><option>Concluído</option><option>Em andamento</option></select>
+        <input class="input" data-adv="from" type="date" title="De">
+        <input class="input" data-adv="to" type="date" title="Até">
+        <button class="btn ghost" data-clear-advanced="${type}">Limpar</button>
+      </div>`;
+    }
+
+    panelHtml = function(m){
+      if(m.id==="hoje") return `<section id="panel-hoje" class="panel">${todayHtml()}</section>`;
+      if(m.id==="casa") return `<section id="panel-casa" class="panel">${homeHubHtml()}</section>`;
+      if(m.id==="relatorios") return `<section id="panel-relatorios" class="panel">${reportsHtml()}</section>`;
+      if(m.id==="sistema") return `<section id="panel-sistema" class="panel">${systemHtml()}</section>`;
+      if(m.id==="templates") return `<section id="panel-templates" class="panel">${templatesHtml()}</section>`;
+      if(m.id==="onboarding") return `<section id="panel-onboarding" class="panel">${onboardingHtml()}</section>`;
+      if(m.id==="reuniao") return `<section id="panel-reuniao" class="panel">${meetingHtml()}</section>`;
+      if(m.id==="apresentacao") return `<section id="panel-apresentacao" class="panel">${presentationHtml()}</section>`;
+      const title = m.id==="metas" ? "Projetos da Família" : m.label;
+      return `<section id="panel-${m.id}" class="panel">
+        <div class="section-title">
+          <div><h2>${title}</h2><p>${m.desc}</p></div>
+          <div class="tabbar">
+            <button class="tab active" data-filter="${m.id}" data-value="todos">Todos</button>
+            <button class="tab" data-filter="${m.id}" data-value="pendentes">Pendentes</button>
+            <button class="tab" data-filter="${m.id}" data-value="concluidos">Concluídos</button>
+          </div>
+        </div>
+        ${v16AdvancedFilterHtml(m.id)}
+        <div class="grid">
+          <div class="card wide"><h3>Novo registro</h3>${formHtml(m.id)}</div>
+          <div class="card"><h3>Inteligência do módulo</h3><div id="${m.id}Insight" class="tiny"></div></div>
+          <div class="card full"><h3>Registros salvos</h3><div id="${m.id}List" class="items"></div></div>
+        </div>
+      </section>`;
+    };
+
+    todayHtml = function(){
+      return `<div class="print-cover"><h1>Relatório Lar Buceles</h1><p>Gerado em ${new Date().toLocaleString("pt-BR")} • Feito por Marcus Buceles e Ingrid Buceles</p></div>
+      <div class="hero">
+        <div class="card wide">
+          <div class="eyebrow">◉ v16 Master Free • foco do lar</div>
+          <h1>Hoje, o lar precisa de <span class="shine">clareza.</span></h1>
+          <p>Prioridades, agenda, finanças e plano de ação em uma tela objetiva para Marcus e Ingrid decidirem o dia.</p>
+        </div>
+        <div class="card">
+          <h3>Saúde do Lar</h3>
+          <div class="health-orb" id="todayHealthOrb" style="--health:0%"><div><strong id="todayHealthScore">0%</strong><span>organização</span></div></div>
+        </div>
+      </div>
+      <div class="v15-focus-grid">
+        <div class="focus-card"><h3>Precisa de atenção</h3><div id="todayAlerts" class="items"></div></div>
+        <div class="focus-card"><h3>Agenda de hoje e próximos dias</h3><div id="weekTimeline" class="items"></div></div>
+        <div class="focus-card"><h3>Resumo financeiro do mês</h3><div class="report-polish">
+          <div class="report-box"><strong id="mSaldo">R$ 0</strong><span>saldo do mês</span></div>
+          <div class="report-box"><strong id="mPend">0</strong><span>pendências</span></div>
+          <div class="report-box"><strong id="mNext">—</strong><span>próximo evento</span></div>
+        </div><div class="divider"></div><div id="localAssistant" class="assistant-line">Analisando rotina familiar...</div></div>
+      </div>
+      <div class="grid" style="margin-top:14px">
+        <div class="card wide"><h3>Plano de ação do dia</h3><div id="v16ActionPlan" class="v16-action-plan"></div></div>
+        <div class="card"><h3>Atalhos inteligentes</h3><div class="toolbar" style="justify-content:flex-start;margin-top:0">
+          <button class="btn" id="quickOpenBtn">+ Ação rápida</button>
+          <button class="btn secondary" data-module="reuniao">Reunião semanal</button>
+          <button class="btn ghost" data-module="apresentacao">Painel TV</button>
+        </div></div>
+      </div>`;
+    };
+
+    homeHubHtml = function(){
+      return `<div class="section-title"><div><h2>Casa</h2><p>Visão prática do funcionamento da casa: compras, estoque, tarefas, manutenção e próximos movimentos.</p></div><button class="btn secondary" data-module="templates">Criar rotina pronta</button></div>
+      <div class="grid">
+        <div class="card half"><h3>Compras pendentes</h3><div id="hubCompras" class="items"></div></div>
+        <div class="card half"><h3>Estoque baixo</h3><div id="hubEstoque" class="items"></div></div>
+        <div class="card half"><h3>Tarefas abertas</h3><div id="hubTarefas" class="items"></div></div>
+        <div class="card half"><h3>Manutenções próximas</h3><div id="hubManutencao" class="items"></div></div>
+        <div class="card full"><h3>Checklist preventivo gratuito</h3><div id="v16Preventive" class="items"></div></div>
+      </div>`;
+    };
+
+    reportsHtml = function(){
+      return `<div class="print-cover"><h1>Relatório mensal Lar Buceles</h1><p>Mês: ${state.reportMonth || monthKey(new Date())}</p></div>
+      <div class="section-title">
+        <div><h2>Relatórios profissionais</h2><p>Fechamento financeiro, categorias, pendências, metas, tarefas, espiritualidade e saúde do lar.</p></div>
+        <div class="month-select"><input id="reportMonth" class="input" type="month" style="width:auto"><button id="csvBtn" class="btn secondary">CSV</button><button id="backupMonthBtn" class="btn secondary">Backup do mês</button><button id="printPdfBtn" class="btn secondary">PDF</button></div>
+      </div>
+      <div class="report-kpi-grid" style="margin-bottom:14px">
+        <div class="report-kpi"><strong id="rIncome">R$ 0</strong><span>entradas</span></div>
+        <div class="report-kpi"><strong id="rExpense">R$ 0</strong><span>saídas</span></div>
+        <div class="report-kpi"><strong id="rBalance">R$ 0</strong><span>saldo</span></div>
+        <div class="report-kpi"><strong id="rHealthMini">0%</strong><span>saúde do lar</span></div>
+      </div>
+      <div class="grid">
+        <div class="card wide"><h3>Gastos por categoria</h3><div id="rCategories" class="chart-row"></div></div>
+        <div class="card"><h3>Performance do lar</h3><div id="rPerformance" class="items"></div></div>
+        <div class="card full"><h3>Projetos da família</h3><div id="rGoals" class="items"></div></div>
+        <div class="card wide"><h3>Ranking de gastos</h3><div id="rRanking" class="items"></div></div>
+        <div class="card"><h3>Pendências para o próximo mês</h3><div id="rCarry" class="items"></div></div>
+        <div class="card half"><h3>Conclusões do mês</h3><div id="v16MonthConclusion" class="assistant-line"></div></div>
+        <div class="card half"><h3>Próxima reunião sugerida</h3><div id="v16NextMeeting" class="assistant-line"></div></div>
+      </div>`;
+    };
+
+    systemHtml = function(){
+      return `<div class="section-title"><div><h2>Sistema do Lar</h2><p>Saúde do lar, backup, restauração, lixeira, histórico, instalação, privacidade e automações gratuitas.</p></div></div>
+      <div class="grid">
+        <div class="card">
+          <h3>Saúde do Lar</h3>
+          <div class="health-orb" id="healthOrb" style="--health:0%"><div><strong id="healthScore">0%</strong><span>organização</span></div></div>
+          <div id="v16ScoreBreakdown" class="v16-score-grid" style="margin-top:14px"></div>
+          <div id="healthDetails" class="items" style="margin-top:14px"></div>
+        </div>
+        <div class="card wide">
+          <h3>Backup, PDF, instalação e privacidade</h3>
+          <div class="backup-drop">
+            <p class="tiny">Tudo funciona sem novas chaves, sem Blaze, sem Cloud Functions e sem cobrança. O backup fica no seu aparelho.</p>
+            <div class="system-actions" style="margin-top:12px">
+              <button id="exportBackupBtn" class="btn">Backup JSON completo</button>
+              <button id="backupMonthBtnSystem" class="btn secondary">Backup do mês</button>
+              <button id="exportModuleBtn" class="btn secondary">CSV por módulo</button>
+              <button id="restoreBackupBtn" class="btn secondary">Restaurar backup</button>
+              <button id="printPdfBtnSystem" class="btn secondary">Relatório PDF</button>
+              <button id="installBtn" class="btn ghost">Instalar app</button>
+              <button id="runRecurrencesBtn" class="btn secondary">Atualizar recorrências</button>
+              <button id="syncCalendarBatchBtn" class="btn secondary">Enviar datas à agenda</button>
+              <button id="notifyBtnSystem" class="btn secondary">Notificações locais</button>
+              <button id="privacyToggleBtn" class="btn secondary">Privacidade</button>
+              <button id="privacyPinBtn" class="btn ghost">Definir PIN local</button>
+              <button id="undoTrashBtn" class="btn ghost">Desfazer exclusão</button>
+              <button id="openOnboardingBtn" class="btn ghost">Guia inicial</button>
+              <button id="clearLocalCacheBtn" class="btn ghost danger-zone">Limpar cache local</button>
+            </div>
+            <input id="backupFile" class="hide" type="file" accept="application/json,.json">
+          </div>
+          <div class="divider"></div>
+          <div class="install-strip"><div><b>Instalação premium gratuita</b><p class="tiny" style="margin:4px 0 0">Use como app em tela cheia no iPhone, iPad, Android e PC.</p></div><button class="btn secondary" id="installBtnInline">Instalar</button></div>
+          <div class="divider"></div>
+          <h3>Status do sistema</h3><div id="systemStats" class="items"></div>
+          <div class="divider"></div>
+          <h3>Instalar no celular</h3>
+          <ol class="install-help tiny"><li><b>iPhone/iPad:</b> Safari > Compartilhar > Adicionar à Tela de Início.</li><li><b>Android:</b> Chrome > menu ⋮ > Instalar app ou Adicionar à tela inicial.</li><li>Depois abra pelo ícone para usar em tela cheia.</li></ol>
+        </div>
+        <div class="card wide"><h3>Histórico de alterações</h3><div id="historyList" class="timeline-mini"></div></div>
+        <div class="card"><h3>Lixeira</h3><div id="trashList" class="items"></div></div>
+      </div>`;
+    };
+
+    templatesHtml = function(){
+      const templates = [
+        ["rotina-diaria", "☀️", "Rotina diária", "Tarefas leves de todos os dias para manter a casa fluida."],
+        ["rotina-semanal", "✅", "Rotina semanal", "Limpeza, compras, planejamento e revisão familiar."],
+        ["rotina-mensal", "🗓️", "Rotina mensal", "Fechamento financeiro, documentos e manutenção preventiva."],
+        ["contas-fixas", "🧾", "Contas fixas", "Energia, água, internet, escola, aluguel e cartões."],
+        ["mercado-mensal", "🛒", "Compras do mês", "Base de mercado, limpeza, higiene e farmácia."],
+        ["estoque-minimo", "📦", "Estoque mínimo", "Itens de despensa para não deixar faltar."],
+        ["manutencao-casa", "🛠️", "Manutenção da casa", "Filtro, caixa d'água, ar-condicionado e segurança."],
+        ["manutencao-carro", "🚗", "Manutenção do carro", "Revisão, pneus, óleo, seguro e documentação."],
+        ["documentos-familia", "📁", "Documentos essenciais", "Organiza certidões, contratos, garantias e saúde."],
+        ["orcamento-familiar", "📊", "Orçamento familiar", "Limites por categoria para controlar o mês."],
+        ["rotina-espiritual", "🕊️", "Rotina espiritual", "Devocional, oração, gratidão e leitura bíblica."],
+        ["reuniao-casal", "💞", "Reunião do casal", "Decisões, sonhos, acordos e responsabilidades."],
+        ["checklist-viagem", "🧳", "Checklist de viagem", "Documentos, remédios, malas e organização."],
+        ["checklist-emergencia", "🚨", "Checklist de emergência", "Contatos, seguros, remédios e dados críticos."],
+        ["reforma-mudanca", "🏗️", "Reforma ou mudança", "Planejamento de orçamento, fornecedores e tarefas."]
+      ];
+      return `<div class="section-title"><div><h2>Templates inteligentes</h2><p>Crie bases prontas sem pagar nada e sem servidor. Use só o que fizer sentido para o seu lar.</p></div></div>
+      <div class="grid">
+        <div class="card full"><h3>Criar base do lar</h3><div class="template-grid">${templates.map(t=>`<button class="btn secondary template-card" data-template="${t[0]}"><strong>${t[1]} ${t[2]}</strong><span>${t[3]}</span></button>`).join("")}</div></div>
+        <div class="card wide"><h3>Ordem recomendada</h3><div class="assistant-line">1) Contas fixas. 2) Mercado mensal. 3) Estoque mínimo. 4) Rotina semanal. 5) Reunião do casal. 6) Rotina espiritual. Depois, adicione manutenção, documentos e projetos.</div></div>
+        <div class="card"><h3>Uso gratuito</h3><p class="tiny">Os templates criam registros essenciais e leves. Isso ajuda a economizar leituras/escritas no Firestore Spark.</p></div>
+      </div>`;
+    };
+
+    onboardingHtml = function(){
+      const completed = onboardingStatus();
+      const steps = [
+        ["login","Entrar com Google","Use somente as contas autorizadas de Marcus e Ingrid.", state.user ? "done":"" , "Entrar", "login"],
+        ["lar","Criar/entrar no lar","Conecta os dois no mesmo banco de dados familiar.", state.familyId ? "done":"", "Abrir lar", "family"],
+        ["privacidade","Definir PIN local","Oculta valores financeiros quando necessário.", state.privacyPinSet ? "done":"", "PIN", "pin"],
+        ["templates","Criar base do lar","Use templates para contas, mercado, rotina, espiritualidade e reunião do casal.", completed.templates ? "done":"", "Templates", "templates"],
+        ["agenda","Conectar agenda","Permite enviar compromissos com lembretes para o Google Agenda.", calendarReady ? "done":"", "Conectar", "calendar"],
+        ["instalar","Instalar no celular","Adicione à tela inicial para usar como app no iPhone/Android.", window.matchMedia("(display-mode: standalone)").matches ? "done":"", "Instalar", "install"],
+        ["reuniao","Primeira reunião","Façam uma reunião semanal e salvem o resumo.", state.items.some(i=>i.type==="reuniao") ? "done":"", "Reunião", "meeting"]
+      ];
+      return `<div class="section-title"><div><h2>Começar bem</h2><p>Guia definitivo para deixar o Lar Buceles pronto sem pagar nada e sem configurar servidor.</p></div><button id="completeOnboardingBtn" class="btn secondary">Marcar como concluído</button></div>
+      <div class="grid">
+        <div class="card full"><h3>Passos recomendados</h3><div class="onboarding-steps">${steps.map((s,idx)=>`<div class="step-card ${s[3]}"><div class="step-num">${idx+1}</div><b>${s[1]}</b><p>${s[2]}</p><button class="btn small ${s[3]?'ghost':'secondary'}" data-onboard-action="${s[5]}">${s[3]?'Concluído':'Fazer agora'}</button></div>`).join("")}</div></div>
+        <div class="card wide"><h3>Sequência ideal para hoje</h3><div class="assistant-line">1) Criar/entrar no lar. 2) Aplicar templates de contas, mercado e rotina. 3) Definir PIN local. 4) Conectar agenda. 5) Fazer a primeira Reunião semanal. 6) Instalar no celular.</div></div>
+        <div class="card"><h3>Progresso</h3><div class="health-orb" id="onboardingOrb" style="--health:${completed.percent}%"><div><strong>${completed.percent}%</strong><span>configurado</span></div></div></div>
+      </div>`;
+    };
+
+    meetingHtml = function(){
+      return `<div class="section-title"><div><h2>Reunião semanal da família</h2><p>Um ritual de 20 minutos para revisar a casa, alinhar decisões, orar e manter o lar em paz.</p></div><button id="saveMeetingBtn" class="btn">Salvar resumo</button></div>
+      <div class="grid">
+        <div class="card"><h3>Checklist da reunião</h3><div class="meeting-checklist" id="meetingChecklist">
+          ${["Orar/agradecer antes de começar", "Revisar contas vencidas e próximas", "Revisar compras e estoque baixo", "Distribuir tarefas da semana", "Conferir agenda familiar", "Revisar projetos/metas", "Conversar sobre decisões pendentes", "Definir 3 prioridades da semana", "Marcar próxima reunião"].map((t)=>`<label><input type="checkbox" value="${esc(t)}"><span>${esc(t)}</span></label>`).join("")}
+        </div></div>
+        <div class="card wide"><h3>Resumo da reunião</h3><div class="form-grid">
+          <label class="field s6"><span>Prioridade da semana</span><input id="meetingPriority" class="input" placeholder="Ex.: organizar contas e mercado"></label>
+          <label class="field s6"><span>Responsável principal</span><select id="meetingOwner" class="input"><option>Casal</option><option>Marcus</option><option>Ingrid</option><option>Família</option></select></label>
+          <label class="field s12"><span>Decisões tomadas</span><textarea id="meetingDecisions" class="input" placeholder="O que ficou decidido?"></textarea></label>
+          <label class="field s12"><span>Pedidos, gratidão ou oração</span><textarea id="meetingPrayer" class="input" placeholder="Registro espiritual/familiar da semana"></textarea></label>
+        </div><div class="divider"></div><div id="meetingPreview" class="assistant-line">Preencha os campos e salve para registrar no histórico do lar.</div></div>
+        <div class="card full"><h3>Últimas reuniões registradas</h3><div id="meetingHistory" class="items"></div></div>
+      </div>`;
+    };
+
+    renderList = function(type){
+      const box = $(`${type}List`);
+      if(!box) return;
+      const filter = box.dataset.filter || "todos";
+      let items = state.items.filter(i=>i.type===type);
+      if(state.search) items = items.filter(i=>JSON.stringify(i).toLowerCase().includes(state.search));
+      items = v16ApplyFilters(items,type);
+      if(filter==="pendentes") items = items.filter(isPending);
+      if(filter==="concluidos") items = items.filter(i=>!isPending(i));
+      box.innerHTML = items.length ? items.map(itemHtml).join("") : `<div class="empty">Nenhum registro encontrado.</div>`;
+    };
+
+    healthScore = function(){
+      const w = v16HealthBreakdown();
+      const score = Math.round(w.reduce((s,x)=>s + x.score*x.weight,0) / w.reduce((s,x)=>s+x.weight,0));
+      return Math.max(0, Math.min(100, score));
+    };
+    function v16HealthBreakdown(){
+      const alerts = getAlerts();
+      const contas = state.items.filter(i=>i.type==="contas");
+      const contasPend = contas.filter(i=>!i.paid).length;
+      const tarefas = state.items.filter(i=>i.type==="tarefas");
+      const tarefasPend = tarefas.filter(i=>!i.done).length;
+      const budget = budgetOverruns().length;
+      const stock = lowStock().length;
+      const agenda = upcomingAgenda().length;
+      const docsExp = state.items.filter(i=>i.type==="documentos" && i.expiryDate && daysBetween(startOfDay(new Date()), startOfDay(new Date(i.expiryDate+"T00:00:00")))<=30).length;
+      const manut = state.items.filter(i=>i.type==="manutencao" && !i.done && i.dueDate && daysBetween(startOfDay(new Date()), startOfDay(new Date(i.dueDate+"T00:00:00")))<=30).length;
+      const projetos = state.items.filter(i=>i.type==="metas" && i.status!=="Concluído").length;
+      const espiritual = state.items.filter(i=>i.type==="espiritual" && !i.done).length;
+      const reuniao = state.items.some(i=>i.type==="reuniao" && i.date && daysBetween(startOfDay(new Date(i.date+"T00:00:00")), startOfDay(new Date()))<=8);
+      return [
+        {key:"Contas", weight:18, score:Math.max(0,100-contasPend*18-alerts.filter(a=>a.module==="contas"&&a.sev==="danger").length*20), detail:`${contasPend} pendente(s)`},
+        {key:"Tarefas", weight:13, score:Math.max(0,100-tarefasPend*8), detail:`${tarefasPend} aberta(s)`},
+        {key:"Orçamento", weight:14, score:Math.max(0,100-budget*28), detail:budget?`${budget} acima`:`ok`},
+        {key:"Estoque", weight:10, score:Math.max(0,100-stock*15), detail:`${stock} baixo(s)`},
+        {key:"Agenda", weight:10, score:agenda?100:72, detail:`${agenda} próximo(s)`},
+        {key:"Docs", weight:7, score:Math.max(0,100-docsExp*18), detail:`${docsExp} atenção`},
+        {key:"Manutenção", weight:9, score:Math.max(0,100-manut*16), detail:`${manut} próxima(s)`},
+        {key:"Projetos", weight:7, score:projetos?86:72, detail:`${projetos} ativo(s)`},
+        {key:"Espiritual", weight:7, score:Math.max(55,100-espiritual*10), detail:`${espiritual} aberto(s)`},
+        {key:"Reunião", weight:5, score:reuniao?100:68, detail:reuniao?"em dia":"fazer"}
+      ];
+    }
+    healthDetails = function(){
+      return v16HealthBreakdown().map(x=>({sev:x.score<65?"danger":x.score<84?"warn":"", title:x.key, detail:`${Math.round(x.score)}% • ${x.detail}`}));
+    };
+
+    renderSystem = function(){
+      const score = healthScore();
+      setText("healthScore", score + "%");
+      const orb = $("healthOrb"); if(orb) orb.style.setProperty("--health", score + "%");
+      setHTML("v16ScoreBreakdown", v16HealthBreakdown().map(x=>`<div class="v16-score"><b>${Math.round(x.score)}%</b><span>${esc(x.key)} • ${esc(x.detail)}</span></div>`).join(""));
+      const details = healthDetails();
+      setHTML("healthDetails", details.map(d=>`<div class="alert ${d.sev}"><div class="dot"></div><div><h4>${esc(d.title)}</h4><p>${esc(d.detail)}</p></div></div>`).join(""));
+      setHTML("systemStats", systemStatsHtml());
+      renderTrash(); renderHistory();
+    };
+
+    renderAll = function(){
+      updateStatuses(); renderMetrics(); renderToday(); renderCasa(); renderReports(); renderSystem();
+      Object.keys(schemas).forEach(renderList);
+      renderInsights(); updateNetworkStatus(); renderLocalAssistant(); renderV15Panels(); renderV16();
+    };
+
+    function renderV16(){
+      renderV16ActionPlan(); renderV16Preventive(); renderV16ReportExtras();
+    }
+    function renderV16ActionPlan(){
+      const box = $("v16ActionPlan"); if(!box) return;
+      const alerts = getAlerts(); const plan = [];
+      if(alerts.some(a=>a.module==="contas")) plan.push(["1","Resolver contas", "Abra Contas e pague/registre as contas vencidas ou próximas.", "contas"]);
+      if(lowStock().length) plan.push(["2","Repor estoque", "Abra Casa/Estoque e coloque na lista de compras os itens abaixo do mínimo.", "estoque"]);
+      if(state.items.some(i=>i.type==="tarefas" && !i.done)) plan.push(["3","Distribuir tarefas", "Conclua ou redistribua as tarefas abertas da semana.", "tarefas"]);
+      if(!state.items.some(i=>i.type==="reuniao" && i.date && daysBetween(startOfDay(new Date(i.date+"T00:00:00")), startOfDay(new Date()))<=8)) plan.push(["4","Fazer reunião", "Façam uma reunião semanal rápida e salvem o resumo.", "reuniao"]);
+      if(!plan.length) plan.push(["✓","Manter constância", "O lar está organizado. Atualize agenda, registre gratidão e revise projetos.", "hoje"]);
+      box.innerHTML = plan.slice(0,4).map(p=>`<button class="v16-action" data-module="${p[3]}" style="width:100%;text-align:left;color:inherit"><div class="badge">${p[0]}</div><div><b>${esc(p[1])}</b><p class="tiny" style="margin:4px 0 0">${esc(p[2])}</p></div></button>`).join("");
+    }
+    function renderV16Preventive(){
+      const box = $("v16Preventive"); if(!box) return;
+      const arr = [
+        ["Revisar contas da semana", state.items.filter(i=>i.type==="contas"&&!i.paid).length, "contas"],
+        ["Checar itens de limpeza e higiene", lowStock().length, "estoque"],
+        ["Atualizar agenda familiar", upcomingAgenda().length, "agenda"],
+        ["Registrar devocional/gratidão", state.items.filter(i=>i.type==="espiritual"&&!i.done).length, "espiritual"],
+        ["Fazer reunião da família", state.items.filter(i=>i.type==="reuniao").length, "reuniao"]
+      ];
+      box.innerHTML = arr.map(([t,n,m])=>`<button class="alert" data-module="${m}" style="text-align:left;width:100%"><div class="dot"></div><div><h4>${esc(t)}</h4><p>${Number(n)||0} registro(s) relacionado(s)</p></div></button>`).join("");
+    }
+    function renderV16ReportExtras(){
+      setText("rHealthMini", healthScore()+"%");
+      const month = state.reportMonth || monthKey(new Date());
+      const pending = state.items.filter(isPending).length;
+      const over = budgetOverruns().length;
+      const conclusion = over ? `Atenção: há ${over} orçamento(s) acima do limite. Priorize revisar gastos antes de adicionar novas metas.` : pending ? `O mês está avançando bem, mas existem ${pending} pendência(s) que podem ser resolvidas antes do fechamento.` : `Excelente: sem pendências relevantes no momento. Mantenham a rotina semanal.`;
+      setHTML("v16MonthConclusion", conclusion);
+      setHTML("v16NextMeeting", `Sugestão: fazer uma reunião de 20 minutos no próximo domingo para revisar contas, compras, projetos, oração e agenda.`);
+    }
+
+    applyTemplate = async function(name){
+      if(!state.user) return toast("Entre com Google antes de criar templates.", "warn");
+      if(!state.familyId) return openModal("familyModal");
+      const items = templateData(name);
+      if(!items.length) return toast("Template não encontrado.", "warn");
+      if(!confirm(`Criar ${items.length} registro(s) deste template?`)) return;
+      const who = state.user?.displayName || state.user?.email || "Membro";
+      let count=0;
+      for(const data of items){
+        data.fromTemplate = name; data.authorUid = state.user.uid; data.authorName = who; data.updatedBy = who; data.deleted = false;
+        data.history = [{action:`criado pelo template ${name}`, by:who, at:new Date().toISOString()}];
+        data.signature="Feito por Marcus Buceles e Ingrid Buceles"; data.createdAt=serverTimestamp(); data.updatedAt=serverTimestamp();
+        await addDoc(collection(db, "familias", state.familyId, "items"), data); count++;
+      }
+      toast(`${count} registro(s) criados pelo template.`);
+    };
+
+    templateData = function(name){
+      const d = (offset=0)=>{ const x=new Date(); x.setDate(x.getDate()+offset); return x.toISOString().slice(0,10); };
+      const nextMonth = ()=>{ const x=new Date(); x.setMonth(x.getMonth()+1); return x.toISOString().slice(0,7); };
+      const base = {
+        "rotina-diaria": [
+          {type:"tarefas", title:"Arrumar camas e abrir janelas", owner:"Família", dueDate:d(0), priority:"Normal", frequency:"Diária", done:false},
+          {type:"tarefas", title:"Organizar cozinha ao final do dia", owner:"Casal", dueDate:d(0), priority:"Alta", frequency:"Diária", done:false},
+          {type:"tarefas", title:"Revisar agenda de amanhã", owner:"Casal", dueDate:d(0), priority:"Normal", frequency:"Diária", done:false}
+        ],
+        "rotina-semanal": [
+          {type:"tarefas", title:"Revisar contas da semana", owner:"Marcus", dueDate:d(1), priority:"Alta", frequency:"Semanal", done:false},
+          {type:"tarefas", title:"Planejar compras de mercado", owner:"Ingrid", dueDate:d(2), priority:"Alta", frequency:"Semanal", done:false},
+          {type:"tarefas", title:"Limpeza geral dos banheiros", owner:"Família", dueDate:d(3), priority:"Normal", frequency:"Semanal", done:false},
+          {type:"tarefas", title:"Reunião semanal do casal", owner:"Casal", dueDate:d(6), priority:"Alta", frequency:"Semanal", done:false}
+        ],
+        "rotina-mensal": [
+          {type:"tarefas", title:"Fechamento financeiro mensal", owner:"Casal", dueDate:d(7), priority:"Alta", frequency:"Mensal", done:false},
+          {type:"tarefas", title:"Organizar documentos e garantias", owner:"Casal", dueDate:d(10), priority:"Normal", frequency:"Mensal", done:false},
+          {type:"tarefas", title:"Revisar metas da família", owner:"Casal", dueDate:d(12), priority:"Alta", frequency:"Mensal", done:false}
+        ],
+        "contas-fixas": [
+          {type:"contas", title:"Energia", amount:0, dueDate:d(7), reminderDays:3, recurrence:"Mensal", paid:false},
+          {type:"contas", title:"Água", amount:0, dueDate:d(8), reminderDays:3, recurrence:"Mensal", paid:false},
+          {type:"contas", title:"Internet", amount:0, dueDate:d(10), reminderDays:3, recurrence:"Mensal", paid:false},
+          {type:"contas", title:"Cartão de crédito", amount:0, dueDate:d(12), reminderDays:5, recurrence:"Mensal", paid:false},
+          {type:"contas", title:"Escola/curso", amount:0, dueDate:d(5), reminderDays:3, recurrence:"Mensal", paid:false}
+        ],
+        "mercado-mensal": [
+          {type:"compras", title:"Arroz", quantity:"2 pacotes", category:"Mercado", priority:"Normal", done:false},
+          {type:"compras", title:"Feijão", quantity:"2 pacotes", category:"Mercado", priority:"Normal", done:false},
+          {type:"compras", title:"Carnes e ovos", quantity:"planejar semana", category:"Mercado", priority:"Alta", done:false},
+          {type:"compras", title:"Frutas e legumes", quantity:"semana", category:"Mercado", priority:"Alta", done:false},
+          {type:"compras", title:"Produtos de limpeza", quantity:"repor", category:"Limpeza", priority:"Normal", done:false},
+          {type:"compras", title:"Farmácia básica", quantity:"revisar", category:"Farmácia", priority:"Normal", done:false}
+        ],
+        "estoque-minimo": [
+          {type:"estoque", title:"Papel higiênico", current:4, minimum:8, unit:"rolos", location:"Banheiro/despensa"},
+          {type:"estoque", title:"Arroz", current:1, minimum:2, unit:"pacotes", location:"Despensa"},
+          {type:"estoque", title:"Sabão em pó", current:1, minimum:2, unit:"un", location:"Área de serviço"},
+          {type:"estoque", title:"Gás", current:0, minimum:1, unit:"botijão reserva", location:"Cozinha"}
+        ],
+        "manutencao-casa": [
+          {type:"manutencao", title:"Limpeza dos filtros", area:"Casa", dueDate:d(30), frequency:"Mensal", amount:0, done:false},
+          {type:"manutencao", title:"Limpeza da caixa d'água", area:"Casa", dueDate:d(180), frequency:"Semestral", amount:0, done:false},
+          {type:"manutencao", title:"Revisão de ar-condicionado", area:"Eletrodoméstico", dueDate:d(90), frequency:"Trimestral", amount:0, done:false}
+        ],
+        "manutencao-carro": [
+          {type:"manutencao", title:"Revisão do carro", area:"Carro", dueDate:d(90), frequency:"Semestral", amount:0, done:false},
+          {type:"manutencao", title:"Calibrar pneus", area:"Carro", dueDate:d(7), frequency:"Semanal", amount:0, done:false},
+          {type:"documentos", title:"Seguro do carro", category:"Carro", location:"Drive/Pasta", expiryDate:d(365)}
+        ],
+        "documentos-familia": [
+          {type:"documentos", title:"Documentos pessoais", category:"Pessoal", location:"Pasta física e nuvem", notes:"RG, CPF, certidões, comprovantes."},
+          {type:"documentos", title:"Contratos do imóvel", category:"Imóvel", location:"Pasta física/Drive"},
+          {type:"documentos", title:"Exames e saúde", category:"Saúde", location:"Pasta saúde"},
+          {type:"documentos", title:"Garantias e notas fiscais", category:"Garantia", location:"Pasta garantias"}
+        ],
+        "orcamento-familiar": [
+          {type:"orcamentos", category:"Mercado", month:monthKey(new Date()), limit:1500},
+          {type:"orcamentos", category:"Moradia", month:monthKey(new Date()), limit:2500},
+          {type:"orcamentos", category:"Transporte", month:monthKey(new Date()), limit:900},
+          {type:"orcamentos", category:"Lazer", month:monthKey(new Date()), limit:500},
+          {type:"orcamentos", category:"Reserva", month:monthKey(new Date()), limit:1000}
+        ],
+        "rotina-espiritual": [
+          {type:"espiritual", title:"Devocional do casal", category:"Devocional", date:d(0), owner:"Casal", done:false, verse:"Salmo 127:1", notes:"Separar 10 minutos para oração e reflexão."},
+          {type:"espiritual", title:"Pedido de oração da semana", category:"Oração", date:d(1), owner:"Família", done:false},
+          {type:"espiritual", title:"Gratidão do dia", category:"Gratidão", date:d(0), owner:"Família", done:false},
+          {type:"espiritual", title:"Leitura bíblica familiar", category:"Leitura bíblica", date:d(2), owner:"Família", done:false}
+        ],
+        "reuniao-casal": [
+          {type:"casal", title:"Reunião semanal do casal", category:"Conversa pendente", owner:"Casal", dueDate:d(1), status:"Aberto", notes:"Revisar semana, sonhos, ajustes, oração e responsabilidades."},
+          {type:"casal", title:"Sonho da família", category:"Sonho", owner:"Casal", dueDate:d(30), status:"Planejado", notes:"Definir próximo objetivo familiar."},
+          {type:"casal", title:"Acordo de responsabilidades", category:"Acordo do lar", owner:"Casal", dueDate:d(7), status:"Em conversa", notes:"Alinhar tarefas da semana."}
+        ],
+        "checklist-viagem": [
+          {type:"tarefas", title:"Separar documentos da viagem", owner:"Casal", dueDate:d(7), priority:"Alta", frequency:"Única", done:false},
+          {type:"tarefas", title:"Revisar remédios e carregadores", owner:"Família", dueDate:d(6), priority:"Normal", frequency:"Única", done:false},
+          {type:"compras", title:"Itens de higiene para viagem", quantity:"revisar", category:"Higiene", priority:"Normal", done:false}
+        ],
+        "checklist-emergencia": [
+          {type:"emergencia", title:"Contato médico principal", name:"Preencher", phone:"", category:"Saúde", notes:"Adicionar telefone e observações."},
+          {type:"emergencia", title:"Seguro/assistência", name:"Preencher", phone:"", category:"Segurança"},
+          {type:"documentos", title:"Pasta de emergência", category:"Pessoal", location:"Nuvem e pasta física", notes:"Documentos, saúde, seguros e contatos."}
+        ],
+        "reforma-mudanca": [
+          {type:"metas", title:"Projeto reforma/mudança", category:"Casa", targetAmount:0, currentAmount:0, dueDate:d(90), status:"Planejado", notes:"Definir escopo, orçamento e fornecedores."},
+          {type:"tarefas", title:"Listar fornecedores e orçamentos", owner:"Casal", dueDate:d(14), priority:"Alta", frequency:"Única", done:false},
+          {type:"documentos", title:"Orçamentos da reforma", category:"Imóvel", location:"Drive/Pasta"}
+        ]
+      };
+      return base[name] || [];
+    };
+
+    exportJson = function(){
+      const data = {version:V16_VERSION, exportedAt:new Date().toISOString(), familyId:state.familyId, items:state.allItems.length ? state.allItems : state.items};
+      localStorage.setItem("larBuceles.lastBackup", new Date().toLocaleString("pt-BR"));
+      download("lar-buceles-backup-v16-master-free.json", JSON.stringify(data,null,2), "application/json");
+      renderSystem();
+    };
+    function exportMonthlyBackup(){
+      const m = state.reportMonth || monthKey(new Date());
+      const items = (state.allItems.length?state.allItems:state.items).filter(i=>monthKey(i.date||i.dueDate||i.start||i.createdAt?.toDate?.()||new Date())===m);
+      download(`lar-buceles-backup-${m}.json`, JSON.stringify({version:V16_VERSION, month:m, exportedAt:new Date().toISOString(), items},null,2), "application/json");
+    }
+    function exportModuleCsv(){
+      const type = state.active && schemas[state.active] ? state.active : prompt("Qual módulo exportar? Ex.: contas, tarefas, financas", "contas");
+      if(!type) return;
+      const rows = [["tipo","titulo","categoria","responsavel","valor","data","status","observacoes"]];
+      state.items.filter(i=>i.type===type).forEach(i=>rows.push([i.type, i.title||i.category||"", i.category||"", i.owner||i.authorName||"", i.amount||i.limit||i.currentAmount||"", i.date||i.dueDate||i.start||"", isPending(i)?"pendente":"concluido", i.notes||""]));
+      const csv = rows.map(r=>r.map(v=>`"${String(v).replaceAll('"','""')}"`).join(",")).join("\n");
+      download(`lar-buceles-${type}.csv`, csv, "text/csv;charset=utf-8");
+    }
+    async function batchSyncDatesToCalendar(){
+      const candidates = state.items.filter(i => (i.type==="contas"&&!i.paid&&i.dueDate) || (i.type==="manutencao"&&!i.done&&i.dueDate) || (i.type==="tarefas"&&!i.done&&i.dueDate));
+      if(!candidates.length) return toast("Não há datas pendentes para enviar à agenda.", "warn");
+      if(!confirm(`Enviar até ${Math.min(10,candidates.length)} datas pendentes para o Google Agenda?`)) return;
+      for(const i of candidates.slice(0,10)){
+        const date = i.dueDate + "T09:00";
+        await syncAgendaItem(i.id, {title:`${moduleLabel(i.type)}: ${i.title}`, start:date, end:i.dueDate+"T09:30", location:"", notes:summary(i), recurrence:"Nenhuma"});
+      }
+      toast("Datas enviadas para o Google Agenda.");
+    }
+
+    function v16Setup(){
+      renderShell();
+      setActive(state.active || (localStorage.getItem("larBuceles.onboarding.v16")==="done" ? "hoje" : "onboarding"));
+      renderAll();
+      document.addEventListener("click", e=>{
+        if(e.target.closest("#quickFab") || e.target.closest("#quickOpenBtn")) openModal("quickModal");
+        const qm = e.target.closest("[data-quick-module]")?.dataset.quickModule;
+        if(qm){ closeModal("quickModal"); setActive(qm); setTimeout(()=>document.querySelector(`#panel-${qm} form input, #panel-${qm} form textarea, #panel-${qm} form select`)?.focus(), 250); }
+        const clear = e.target.closest("[data-clear-advanced]")?.dataset.clearAdvanced;
+        if(clear){ document.querySelectorAll(`#${clear}AdvancedFilters .input`).forEach(x=>x.value=""); renderList(clear); }
+        if(e.target.closest("#backupMonthBtn") || e.target.closest("#backupMonthBtnSystem")) exportMonthlyBackup();
+        if(e.target.closest("#exportModuleBtn")) exportModuleCsv();
+        if(e.target.closest("#syncCalendarBatchBtn")) batchSyncDatesToCalendar();
+        if(e.target.closest("#installBtnInline")) installPwa();
+      });
+      document.addEventListener("input", e=>{
+        const box = e.target.closest(".advanced-filter");
+        if(box){ const type = box.id.replace("AdvancedFilters",""); renderList(type); }
+      });
+      document.addEventListener("change", e=>{
+        if(e.target.id==="backupFile") importBackup(e);
+        const box = e.target.closest(".advanced-filter");
+        if(box){ const type = box.id.replace("AdvancedFilters",""); renderList(type); }
+      });
+      ["mousemove","keydown","touchstart","click"].forEach(evt=>document.addEventListener(evt, v16ResetIdleLock, {passive:true}));
+      v16ResetIdleLock();
+    }
+    function v16ResetIdleLock(){
+      clearTimeout(v16IdleTimer);
+      const min = Number(localStorage.getItem(LOCK_MINUTES_KEY)||10);
+      if(!state?.privacyPinSet || state?.privacyLocked) return;
+      v16IdleTimer = setTimeout(()=>{ localStorage.setItem("larBuceles.privacyLocked","true"); state.privacyLocked=true; renderAll(); toast("Privacidade ativada automaticamente por inatividade.", "warn"); }, min*60*1000);
+    }
+    handleOnboardAction = function(action){
+      if(action==="login") return login();
+      if(action==="family") return openModal("familyModal");
+      if(action==="pin") return setPrivacyPin();
+      if(action==="templates") return setActive("templates");
+      if(action==="calendar") return connectCalendar();
+      if(action==="install"){ localStorage.setItem("larBuceles.installHintSeen","1"); return installPwa(); }
+      if(action==="meeting") return setActive("reuniao");
+    };
+    completeOnboarding = function(){
+      localStorage.setItem("larBuceles.onboarding.v16", "done");
+      state.onboardingDone = true;
+      toast("Guia inicial v16 marcado como concluído.");
+      renderV15Panels();
+    };
+    setTimeout(v16Setup, 0);
+
+
+    async function connectCalendar(){
+      try{
+        await waitForGoogle();
+        await initGapi();
+        tokenClient = google.accounts.oauth2.initTokenClient({
+          client_id: CONFIG.googleClientId,
+          scope: CALENDAR_SCOPE,
+          callback: () => { calendarReady = true; updateStatuses(); toast("Google Agenda conectada."); }
+        });
+        tokenClient.requestAccessToken({prompt:"consent"});
+      }catch(e){ toast("Erro ao conectar agenda: " + e.message, "danger"); }
+    }
+
+    async function syncAgendaItem(id, item=null){
+      item = item || state.items.find(i=>i.id===id);
+      if(!item || !item.start) return toast("Compromisso sem data de início.", "warn");
+      if(!calendarReady){ await connectCalendar(); if(!calendarReady) return; }
+      const start = new Date(item.start);
+      const end = item.end ? new Date(item.end) : new Date(start.getTime()+60*60*1000);
+      const event = {
+        summary: item.title || "Compromisso Lar Buceles",
+        location: item.location || "",
+        description: `${item.notes || ""}\n\nCriado no Lar Buceles • Feito por Marcus Buceles e Ingrid Buceles`,
+        start: {dateTime: start.toISOString(), timeZone: tz},
+        end: {dateTime: end.toISOString(), timeZone: tz}
+      };
+      const rec = recurrenceLine(item.recurrence);
+      if(rec) event.recurrence = [rec];
+      event.reminders = {useDefault:false, overrides:[{method:"popup", minutes:60},{method:"popup", minutes:1440}]};
+      event.extendedProperties = {private:{origin:"Lar Buceles", family:state.familyId||""}};
+      try{
+        const res = await gapi.client.calendar.events.insert({calendarId:"primary", resource:event});
+        await updateDoc(doc(db, "familias", state.familyId, "items", id), {googleEventId: res.result.id, calendarSyncedAt: new Date().toISOString(), updatedAt: serverTimestamp()});
+        toast("Evento sincronizado com Google Agenda.");
+      }catch(e){ toast("Erro ao sincronizar: " + e.message, "danger"); }
+    }
+
+    function recurrenceLine(r){
+      const map = {"Diária":"RRULE:FREQ=DAILY","Semanal":"RRULE:FREQ=WEEKLY","Mensal":"RRULE:FREQ=MONTHLY","Anual":"RRULE:FREQ=YEARLY"};
+      return map[r] || "";
+    }
+
+    async function initGapi(){
+      if(gapiReady) return;
+      await new Promise((resolve,reject)=>{
+        const start = Date.now();
+        const tick = () => {
+          if(window.gapi) return gapi.load("client", resolve);
+          if(Date.now()-start>10000) return reject(new Error("gapi não carregou."));
+          setTimeout(tick,100);
+        }; tick();
+      });
+      await gapi.client.init({apiKey: CONFIG.googleApiKey, discoveryDocs:[DISCOVERY_DOC]});
+      gapiReady = true;
+    }
+
+    async function waitForGoogle(){
+      await new Promise((resolve,reject)=>{
+        const start = Date.now();
+        const tick = () => {
+          if(window.google?.accounts?.oauth2) return resolve();
+          if(Date.now()-start>10000) return reject(new Error("Google Identity não carregou."));
+          setTimeout(tick,100);
+        }; tick();
+      });
+    }
+
+    async function enableNotifications(){
+      if(!("Notification" in window)) return toast("Este navegador não suporta notificações.", "warn");
+      const perm = await Notification.requestPermission();
+      if(perm==="granted"){ toast("Notificações ativadas. O app avisará quando estiver aberto.", "ok"); maybeNotify(true); }
+      else toast("Permissão de notificação não concedida.", "warn");
+    }
+
+    function maybeNotify(force=false){
+      if(!("Notification" in window) || Notification.permission!=="granted") return;
+      if(state.notified && !force) return;
+      const alerts = getAlerts().filter(a=>a.sev==="danger" || a.sev==="warn");
+      if(alerts.length){
+        new Notification("Lar Buceles: atenção necessária", {body:`${alerts.length} alerta(s) no lar. Primeiro: ${alerts[0].title}`});
+        state.notified = true;
+      }
+    }
+
+
+    async function importBackup(e){
+      const file = e.target.files?.[0];
+      e.target.value = "";
+      if(!file) return;
+      if(!state.user) return toast("Entre com Google antes de restaurar backup.", "warn");
+      if(!state.familyId) return openModal("familyModal");
+      if(!confirm("Restaurar este backup para o lar atual? Os itens serão adicionados como novos registros.")) return;
+      try{
+        const parsed = JSON.parse(await file.text());
+        const items = Array.isArray(parsed.items) ? parsed.items : [];
+        if(!items.length) return toast("Backup sem itens para restaurar.", "warn");
+        const who = state.user?.displayName || state.user?.email || "Membro";
+        let count = 0;
+        for(const original of items){
+          const data = {...original};
+          delete data.id; delete data.createdAt; delete data.updatedAt;
+          data.deleted = false;
+          data.importedFromBackup = true;
+          data.importedAt = new Date().toISOString();
+          data.updatedBy = who;
+          data.history = [...(Array.isArray(data.history)?data.history:[]), {action:"restaurado de backup", by:who, at:new Date().toISOString()}].slice(-25);
+          data.createdAt = serverTimestamp(); data.updatedAt = serverTimestamp();
+          await addDoc(collection(db, "familias", state.familyId, "items"), data);
+          count++;
+        }
+        toast(`${count} registro(s) restaurado(s) do backup.`);
+      }catch(err){ toast("Erro ao restaurar backup: " + err.message, "danger"); }
+    }
+
+    function printPdf(){
+      toast("Na janela de impressão, escolha Salvar como PDF.");
+      setTimeout(()=>window.print(), 250);
+    }
+
+    async function installPwa(){
+      if(state.installPrompt){
+        state.installPrompt.prompt();
+        await state.installPrompt.userChoice.catch(()=>null);
+        state.installPrompt = null;
+        renderSystem();
+      } else {
+        toast("Para instalar: no celular use Compartilhar/Menu do navegador > Adicionar à tela inicial.", "warn");
+      }
+    }
+
+    function scheduleRecurrenceCheck(){
+      const today = new Date().toISOString().slice(0,10);
+      if(state.automating || state.recurrenceCheckedFor === today) return;
+      state.recurrenceCheckedFor = today;
+      setTimeout(()=>runRecurrences(false), 800);
+    }
+
+    async function runRecurrences(manual=false){
+      if(!state.familyId || state.automating) return;
+      state.automating = true;
+      try{
+        const created = [];
+        const now = startOfDay(new Date());
+        const candidates = state.items.filter(i => ["contas","tarefas","manutencao"].includes(i.type));
+        for(const i of candidates){
+          const freq = i.recurrence || i.frequency || "Única";
+          if(!freq || ["Única","Nenhuma","Baixa","Normal","Alta"].includes(freq)) continue;
+          const field = i.type === "contas" ? "dueDate" : "dueDate";
+          const isDone = i.type === "contas" ? !!i.paid : !!i.done;
+          if(!isDone || !i[field]) continue;
+          let next = addPeriod(new Date(i[field]+"T00:00:00"), freq);
+          while(next < now) next = addPeriod(next, freq);
+          const nextStr = next.toISOString().slice(0,10);
+          const duplicate = state.items.some(x => x.type===i.type && !x.deleted && (x.title||"").toLowerCase()===(i.title||"").toLowerCase() && x.dueDate===nextStr);
+          if(duplicate) continue;
+          const data = {...i};
+          delete data.id; delete data.createdAt; delete data.updatedAt; delete data.completedAt;
+          data.dueDate = nextStr; data.deleted = false; data.recurringFrom = i.id;
+          if(i.type==="contas") data.paid = false; else data.done = false;
+          data.history = [{action:"criado por recorrência automática", by:"Lar Buceles", at:new Date().toISOString()}];
+          data.createdAt = serverTimestamp(); data.updatedAt = serverTimestamp();
+          await addDoc(collection(db, "familias", state.familyId, "items"), data);
+          created.push(data.title || i.type);
+        }
+        if(manual || created.length) toast(created.length ? `${created.length} recorrência(s) criada(s).` : "Nenhuma recorrência nova necessária.", created.length?"ok":"warn");
+      }catch(e){ if(manual) toast("Erro ao atualizar recorrências: " + e.message, "danger"); }
+      finally{ state.automating = false; renderSystem(); }
+    }
+
+    function addPeriod(date, freq){
+      const d = new Date(date);
+      if(freq==="Diária") d.setDate(d.getDate()+1);
+      else if(freq==="Semanal") d.setDate(d.getDate()+7);
+      else if(freq==="Mensal") d.setMonth(d.getMonth()+1);
+      else if(freq==="Trimestral") d.setMonth(d.getMonth()+3);
+      else if(freq==="Semestral") d.setMonth(d.getMonth()+6);
+      else if(freq==="Anual") d.setFullYear(d.getFullYear()+1);
+      else d.setMonth(d.getMonth()+1);
+      return d;
+    }
+
+    function exportJson(){
+      const data = {version:"v16-master-free", exportedAt:new Date().toISOString(), familyId:state.familyId, items:state.allItems.length ? state.allItems : state.items};
+      localStorage.setItem("larBuceles.lastBackup", new Date().toLocaleString("pt-BR"));
+      download("lar-buceles-backup-v16-master-free.json", JSON.stringify(data,null,2), "application/json");
+      renderSystem();
+    }
+
+    function exportCsv(){
+      const rows = [["tipo","titulo","categoria","valor","data","status","observacoes"]];
+      state.items.forEach(i=>rows.push([i.type, i.title||i.category||"", i.category||"", i.amount||i.limit||i.currentAmount||"", i.date||i.dueDate||i.start||"", isPending(i)?"pendente":"concluido", i.notes||""]));
+      const csv = rows.map(r=>r.map(v=>`"${String(v).replaceAll('"','""')}"`).join(",")).join("\n");
+      download("lar-buceles-relatorio.csv", csv, "text/csv;charset=utf-8");
+    }
+
+    function download(name, content, type){
+      const blob = new Blob([content], {type});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a"); a.href=url; a.download=name; a.click();
+      setTimeout(()=>URL.revokeObjectURL(url),1000);
+    }
+
+    function setDefaultDates(){
+      document.querySelectorAll('input[type="date"]').forEach(inp=>{ if(!inp.value) inp.value = new Date().toISOString().slice(0,10); });
+      document.querySelectorAll('input[type="month"]').forEach(inp=>{ if(!inp.value) inp.value = monthKey(new Date()); });
+    }
+
+    function loadFamilyLocal(){ try{return JSON.parse(localStorage.getItem(FAMILY_KEY)||"null")}catch{return null} }
+    function saveFamilyLocal(v){ localStorage.setItem(FAMILY_KEY, JSON.stringify(v)); }
+    function randomPin(){ return String(Math.floor(100000 + Math.random()*900000)); }
+    function randomCode(){ return "lar-buceles-" + Math.random().toString(36).slice(2,8); }
+    function setText(id, v){ const el=$(id); if(el) el.textContent = v; }
+    function setHTML(id, v){ const el=$(id); if(el) el.innerHTML = v; }
+    function money(v){ return state?.privacyLocked ? "R$ ••••" : brl.format(Number(v||0)); }
+    function sum(arr, field){ return arr.reduce((s,i)=>s+Number(i[field]||0),0); }
+    function groupSum(arr, key, field){ return arr.reduce((acc,i)=>{ const k=i[key]||"Outros"; acc[k]=(acc[k]||0)+Number(i[field]||0); return acc; },{}); }
+    function spentByCategory(cat, month){ return sum(state.items.filter(i=>i.type==="financas" && i.kind!=="entrada" && i.category===cat && monthKey(i.date || new Date())===month), "amount"); }
+    function monthKey(d){ const x = d instanceof Date ? d : new Date(String(d).includes("T") ? d : d+"T00:00:00"); return Number.isNaN(x.getTime()) ? new Date().toISOString().slice(0,7) : x.toISOString().slice(0,7); }
+    function fmtDate(d){ try{return dateFmt.format(new Date(String(d).includes("T") ? d : d+"T00:00:00"))}catch{return d||"—"} }
+    function startOfDay(d){ const x=new Date(d); x.setHours(0,0,0,0); return x; }
+    function daysBetween(a,b){ return Math.round((b-a)/86400000); }
+    function esc(v){ return String(v ?? "").replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[ch])); }
+    function toast(msg, type="ok"){
+      const el = $("toast");
+      el.textContent = msg; el.className = `toast show ${type}`;
+      clearTimeout(toast.t); toast.t = setTimeout(()=>el.classList.remove("show"), 4200);
+    }
+  </script>
+</body>
+</html>

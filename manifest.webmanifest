@@ -1,0 +1,41 @@
+{
+  "name": "Lar Buceles Command Center v16",
+  "short_name": "Lar Buceles",
+  "description": "Command center familiar gratuito com onboarding, reunião semanal, apresentação, relatórios, agenda, privacidade e modo offline.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#050814",
+  "theme_color": "#06101f",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "display_override": [
+    "window-controls-overlay",
+    "standalone",
+    "browser"
+  ],
+  "scope": "./",
+  "categories": [
+    "productivity",
+    "lifestyle"
+  ],
+  "shortcuts": [
+    {
+      "name": "Hoje",
+      "short_name": "Hoje",
+      "url": "./",
+      "description": "Ver alertas e prioridades do dia"
+    },
+    {
+      "name": "Relatórios",
+      "short_name": "Relatórios",
+      "url": "./",
+      "description": "Ver fechamento mensal"
+    }
+  ]
+}
